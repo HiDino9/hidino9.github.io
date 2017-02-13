@@ -3,6 +3,7 @@ title: 细数JavaScript中那些神乎其神的技巧
 date: 2016-07-15 15:10:02
 categories: JavaScript
 tags: [JS,JavaScript,技巧]
+description: 闲来无事，整理一下 JavaScript 中那些神乎其神的技巧，假装大牛的样子
 ---
 **闲来无事，整理一下JavaScript中那些神乎其神的技巧，假装大牛的样子**
 

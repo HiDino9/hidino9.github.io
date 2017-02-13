@@ -3,6 +3,7 @@ title: JS简单小巧的时间日期格式转换函数
 date: 2016-09-12 14:53:06
 categories: JavaScript
 tags: [JS,JavaScript,Date,时间,日期,格式转换]
+description: JS 简单小巧的时间日期格式转换函数
 ---
 **JS简单小巧的时间日期格式转换函数**
 

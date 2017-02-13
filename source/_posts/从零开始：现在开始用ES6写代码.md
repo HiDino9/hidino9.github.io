@@ -4,6 +4,7 @@ date: 2016-09-30 18:46:45
 categories: JavaScript
 tags: [JS,JavaScript,ES6,ECMAScript6,ES2015,Babel,Gulp,NodeJs]
 cover: banner-write-in-es6.jpg
+description: ES6（ECMAScript6.0）早在2015年便发布了第一个版本，所以又被称作 ECMAScript2015。作为已经正式发布的新版本，取代 ES5 是毋庸置疑的趋势，但鉴于浏览器的历史遗留问题，在生产线上我们还是需要一些工具来转换成 ES5 使其兼容旧版本的浏览器。
 ---
 
 `ES6`（`ECMAScript6.0`）早在2015年便发布了第一个版本，所以又被称作`ECMAScript2015`。
