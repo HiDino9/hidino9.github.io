@@ -1,12 +1,12 @@
 ---
-title: 也许是最简单的React教程：从理论到实践
-date: 2017-03-27 11:37:06
+title: React-小记：开发环境准备
+date: 2017-03-27 21:37:06
 subtitle:
 categories: JavaScript
 tags: [React, Webpack]
 cover:
 ---
-写下这个标题之后我愣了几分钟，突然发现无从下笔。随后想了想，就当是学习`React`过程中的随笔吧。
+写下这个标题之后我愣了几分钟，突然发现无从下笔。随后想了想，就当是学习`React`过程中的随笔吧，写点简单的开发过程顺便记一些刚接触时踩到的坑。最后写完感觉太长了，拆成几个部分吧，选择性阅读。
 <!-- more -->
 ___
 ### 准备工作
@@ -61,13 +61,36 @@ module.exports = {
 ```
 ___
 ### 项目入口
-这个项目入口其实就是`webpack`配置中的`entry`所指向的文件，`webpack`将从这个文件开始查找依赖
+#### 访问入口 index.html
+首先我们要准备一个近乎空白的`HTML`文档：
 ```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Demo</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="js/index.js"></script>
+</body>
+</html>
+```
+>1. 这个`HTML`文件`head`按需设置，或引入样式表，或设置`meta`，随你喜欢，`body`节点中`ID`为`root`的节点则是我们`react`所有`DOM`渲染的的目标节点，
+一般情况下**不要直接渲染到`body`节点中**，虽然可以正常加载，但是控制台会弹出警告，这是因为许多工具或插件（譬如弹窗）也会渲染`DOM`到`body`节点中，这会影响`React`的正常运行
+>2. 下面就是一个脚本引用，引用`webpack`配置中`output`所指的输出文件。
+
+#### 逻辑入口 index.js
+这个入口其实就是`webpack`配置中的`entry`所指向的文件，也就是上文访问入口中引用的脚本文件，`webpack`将从这个文件开始查找依赖
+```
+// index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Index from './component/index.jsx';
 
 ReactDOM.render(<Index />, document.getElementById('index'));
 ```
->1. 引入三个依赖，其中前两个为`React`基础依赖，最后一个为自己写的一个组件。`webpack`编译时将从这三条语句出发，按顺序查找依赖（按树查找，即：如果依赖中还有其他依赖，则一直查找下去，直到依赖树的末端为止），最后读取查找到的全部文件内容后，按照依赖顺序写入到当前文件中，最终输出到`output`中指定的位置
->2. `ReactDOM.render()`第一个参数为将要渲染的`React`元素，这里的`<Index />`则是直接把第三行引入的组件直接放到这里进行渲染，第二个参数是指把这个组件渲染到页面的哪个`DOM`节点中。一般情况下**不要直接渲染到`body`节点中**，虽然可以正常加载，但是控制台会弹出警告，这是因为许多工具或插件（譬如弹窗）也会直接渲染`DOM`到`body`节点中，这会影响`React`的正常运行
+>1. 引入三个依赖，其中前两个为`React`基础依赖，必须引入，最后一个为我们自己写的一个组件。
+`webpack`编译时将从这三条语句出发，按顺序查找依赖（按树查找，即：如果依赖中还有其他依赖，则一直查找下去，直到依赖树的末端为止），最后读取查找到的全部文件内容后，按照依赖顺序写入到当前文件中，最终输出到`output`中指定的位置
+>2. `ReactDOM.render()`第一个参数为将要渲染的`React`元素，这里的`<Index />`则是直接把第三行引入的组件直接放到这里进行渲染，第二个参数是指把这个组件渲染到页面的哪个`DOM`节点中。
+
