@@ -9,10 +9,12 @@ cover: react.png
 组件（`Component`）是`React`中非常重要的概念，`React`组件基于`jsx`语法开发，也就是把`HTML`写在`JS`中，刚开始接触的时候还是蛮抵触的，什么都搅在一起感觉挺乱的。不过真正开发起来会发现，只要颗粒度划分合理，一个完整的组件，所有内容都在一个文件中维护是多么方便！
 <!-- more -->
 
+>当然你也可以使用工厂方法进行开发，不过个人感觉很不直观且繁琐
+
 ___
 ### 基本使用方法
 #### 直接引用
-```
+```js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from './component/button.jsx';
@@ -43,7 +45,7 @@ export default DefaultBtn;
 ---
 ### 基本写法
 无状态的静态组件是最简单的，这里把常用的写法都写下了
-```
+```js
 import { Component } from 'react';
 
 class Button extends Component {
@@ -98,7 +100,7 @@ import react form 'react';
 >在实际项目中，只要入口文件下所依赖的文件有一个进行了正确的`import`就可以嘞，毕竟`webpack`最后会把依赖去重。
 
 原因：在编译过程中，组件的许多部分都会转成对`React`中各个方法的引用，比如：`render()`的`return`被编译后，实质上返回的是`React.createElement()`，上文`return`语句编译后：
-```
+```js
 return React.createElement(
     'botton',
     {
@@ -113,14 +115,14 @@ return React.createElement(
 ---
 ### 唯一根节点
 如果上文你想返回两个`button`，你可能会这样写：
-```
+```js
 render() {
     return (<button>Button1</button>
             <button>Button2</button>);
 }
 ```
 **BUT**，这是不行的，在`render()`中返回的`React`元素只能有一个根节点（原因看上文中的`React.createElement()`），也就是说，你只能这样写：
-```
+```js
 render () {
     return (<div>
                  <button>Button1</button>
@@ -133,11 +135,11 @@ render () {
 ---
 ### 事件回调中的 this
 在`JSX`中给`DOM`绑定事件时，回调函数默认情况下无法访问当前组件，即回调函数中`this`不可用，一般情况下我们可以通过`bind()`来改变函数的上下文来使其可用：
-```
+```js
 onClick = { this.buttonClick.bind(this) }
 ```
 或者在组件的构造函数中：
-```
+```js
 class Button extends React.Component {
     constructor(props) {
         super(props);
@@ -148,7 +150,7 @@ class Button extends React.Component {
 }
 ```
 或者将事件回调放在一个上下文中：
-```
+```js
 <button onClick = { () => this.buttonClick() } >
     ButtonName
 </button>
@@ -180,7 +182,7 @@ string type
 
 1. #### 显式传入 Event
 回调函数中须**显式**传入`event`参数：
-```
+```js
     buttonClick() {
         // It doesn't work.
         event.preventDefault();
@@ -195,7 +197,7 @@ string type
 从 v0.14 开始，在事件回调函数中`return false;`将不再阻止事件的传递与元素的默认事件，需要在事件处理函数中手动写上`e.stopPropagation()`或`e.preventDefault()`。
 3. #### 合成事件无法异步
 为了提高性能，合成事件（`SyntheticEvent`）是全局的，也就是说实质上只有一个合成事件，默认情况下当回调执行完毕后，所有属性都会被重置以便复用，回调函数中传入的`event`参数可以看做是他的一个状态，当回调执行完后就会被立刻重置，所以在异步函数中只能访问到被重置后的默认合成事件，而无法访问事件发生时的合成事件。
-```
+```js
 buttonClick(event) {
     console.log(event.type); // => 'click'
     setTimeout(() => console.log(event.type), 0); // => null
