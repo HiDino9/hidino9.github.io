@@ -127,7 +127,7 @@ console.log(d, e, f); // => 1, 2, 3
 function example({param: value}) {
     return value;
 }
-console.log(example(5)); // => 5
+console.log(example({param: 5})); // => 5
 ```
 　　函数的入参解构也是对象解构的一种延伸用法，我们可以通过改写入参对象目标值为变量名的方式，在函数内部直接获取到入参对象中某个属性或方法的值。
 
