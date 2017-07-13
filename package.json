@@ -10,6 +10,7 @@
     "init": "firebase login && firebase init",
     "deploy": "firebase deploy",
     "hexo": "hexo clean && hexo g && hexo d",
+    "new-post": "hexo new post",
     "server": "hexo s",
     "start": "npm run server"
   },
