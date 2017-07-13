@@ -9,7 +9,9 @@
     "relogin": "firebase login --reauth",
     "init": "firebase login && firebase init",
     "deploy": "firebase deploy",
-    "hexo-g": "hexo g"
+    "hexo": "hexo clean && hexo g && hexo d",
+    "server": "hexo s",
+    "start": "npm run server"
   },
   "dependencies": {
     "hexo": "^3.1.1",
