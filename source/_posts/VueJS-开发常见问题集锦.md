@@ -195,7 +195,7 @@ import YourComponent from '~/YourComponent'
 
 ### CSS 作用域与模块
 #### 组件内样式
-　　通常，组件中 `<style></style>` 标签里的样式是全局的，在使用第三方 UI 库（如：`Element`）时，全局样式很可能影响 UI 库的样式。我们可以通过添加 `scoped` 属性来使 `style` 中的样式只作用域当前组件：
+　　通常，组件中 `<style></style>` 标签里的样式是全局的，在使用第三方 UI 库（如：`Element`）时，全局样式很可能影响 UI 库的样式。我们可以通过添加 `scoped` 属性来使 `style` 中的样式只作用于当前组件：
 ```html
 <style lang="less" scoped>
   @import 'other.less';
@@ -226,3 +226,4 @@ body {
 // src/main.js
 import 'style-global.less'
 ```
+
