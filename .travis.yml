@@ -1,0 +1,11 @@
+language: node_js
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: $FB_TOKEN
+  on:
+    tags: true
+branches:
+  only:
+  - source
