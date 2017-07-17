@@ -226,6 +226,5 @@ body {
 // src/main.js
 import 'style-global.less'
 ```
-
-### 路由配置问题
-#### 
+---
+**To be continue...**

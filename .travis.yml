@@ -1,4 +1,15 @@
 language: node_js
+cache:
+  directories:
+    - "node_modules"
+branches:
+  only:
+    - source
+    - /deploy.*/
+before_install:
+  - wget https://github.com/BearD01001/hexo-theme-nextd/archive/master.zip
+  - mkdir -p themes/nextd && unzip master.zip -d themes/nextd
+script: node_modules/.bin/hexo g
 deploy:
   skip_cleanup: true
   provider: firebase
@@ -6,6 +17,3 @@ deploy:
     secure: $FB_TOKEN
   on:
     tags: true
-branches:
-  only:
-  - source
