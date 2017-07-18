@@ -7,8 +7,8 @@ branches:
     - source
     - /deploy.*/
 before_install:
-  - wget https://github.com/BearD01001/hexo-theme-nextd/archive/master.zip
-  - mkdir -p themes/nextd && unzip master.zip -d themes/nextd
+  - wget https://github.com/BearD01001/hexo-theme-nextd/archive/master.zip && unzip -o master.zip
+  - mkdir -p themes/nextd && cd hexo-theme-nextd-master && cp -rf * ../themes/nextd && cd ..
 script: node_modules/.bin/hexo g
 deploy:
   skip_cleanup: true
