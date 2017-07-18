@@ -207,7 +207,7 @@ import YourComponent from '~/YourComponent'
 > 在有 `scoped` 属性的 `style` 标签内导入其他样式，同样会受限于作用域，变为组件内样式。复用程度较高的样式不建议这样使用。
 > 另，在组件内样式中应避免使用元素选择器，原因在于元素选择器与属性选择器组合时，性能会大大降低。
 > --- 两种组合选择器的测试：[classes selector](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bclass%5E%3D%27class%27%5D&body=background%3A+%23CFD&ne=1000)，[elements selector](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bclass%5E%3D%27class%27%5D&body=background%3A+%23CFD&ne=1000)
-v
+
 #### 导入样式
 　　相对于 `style` 使用 `scoped` 属性时的组件内样式，有时候我们也需要添加一些全局样式。当然我们可以用没有 `scoped` 属性的 `style` 来写全局样式。但是相比较，更推荐下面这种写法：
 ```css
