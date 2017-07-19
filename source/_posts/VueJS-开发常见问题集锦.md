@@ -226,5 +226,62 @@ body {
 // src/main.js
 import 'style-global.less'
 ```
+
+### 获取表单控件值
+　　通常我们可以直接使用 `v-model` 将表单控件与数据进行绑定，但是有时候我们也会需要在用户输入的时候获取当前值（比如：实时验证当前输入控件内容的有效性）。
+　　这时我们可以使用 `@input` 或 `@change` 事件绑定我们自己的处理函数，并传入 `$event` 对象以获取当前控件的输入值：
+```html
+<input type='text' @change='change($event)'>
+```
+```javascript
+change (e) {
+  let curVal = e.target.value
+  if (/^\d+$/.test(curVal)) {
+    this.num = +curVal
+  } else {
+    console.error('%s is not a number!', curVal)
+  }
+}
+```
+> 当然，如果 UI 框架采用 `Element` 会更简单，它的事件回调会直接传入当前值。
+
+### v-for 的使用 tips
+　　`v-for` 指令很强大，它不仅可以用来遍历数组、对象，甚至可以遍历一个数字或字符串。
+　　基本语法就不讲了，这里讲几个小 tips：
+#### 索引值
+　　在使用 `v-for` 根据对象或数组生成 `DOM` 时，有时候需要知道当前的索引。我们可以这样：
+```html
+<ul>
+  <li v-for='(item, key) in items' :key='key'> {{ key }} - {{ item }}
+</ul>
+```
+　　但是在遍历数字的时候需要注意，数字的 `value` 是从 1 开始，而 `key` 是从 0 开始：
+```html
+<ul>
+  <li v-for='(v, k) in 3' :key='k'> {{ k }}-{{ v }} 
+  <!-- output to be 0-1, 1-2, 2-3 -->
+</ul>
+```
+> `2.2.0+` 的版本里，当在组件中使用 `v-for` 时，`key` 现在是必须的。
+
+### 模板的唯一根节点
+　　与 `JSX` 相同，组件中的模板只能有一个根节点，即下面这种写法是 **错误** 的：
+```html
+<template>
+  <h1>Title</h1>
+  <article>Balabala...</article>
+</template>
+```
+　　我们需要用一个块级元素把他包裹起来：
+```html
+<template>
+  <div>
+    <h1>Title</h1>
+    <article>Balabala...</article>
+  </div>
+</template>
+```
+> 原因参考：[React-小记：组件开发注意事项#唯一根节点](//blog.beard.ink/JavaScript/React-小记：组件开发注意事项/#唯一根节点)
+
 ---
 **To be continue...**
