@@ -326,5 +326,101 @@ change (e) {
 ```
 　　没错！就是一个 `.` 的问题。ㄟ( ▔, ▔ )ㄏ
 
+### 更小的 Polyfill 开销
+　　在引入 `Polyfill` 之后，可以在 `.babelrc` 文件中开启 `useBulitIns` 属性。启用该属性后，编译项目时会根据项目中新特性的使用情况将完整的 `polyfill` 拆分成独立的模块序列。
+　　启用 `useBuiltIns` 属性：
+```javascript
+  // .babelrc
+  {
+    "presets": [
+      ["env", {
+        "modules": false,
+        "useBuiltIns": true
+      }],
+      "es2015",
+      "stage-2"
+    ]
+    // ...
+  }
+```
+　　安装后引入 `babel-polyfill`：
+```javascript
+  // src/main.js
+  import 'babel-polyfill'
+
+  [1, 2, 3].find((v => v > 2))
+```
+  启用 `useBulitIns` 后自动拆分 `babel-polyfill`
+```javascript
+  import 'core-js/modules/es6.array.find'
+
+  [1, 2, 3].find((v => v > 2))
+```
+> 经测试最大减少了一半左右的 `polyfill` 体积
+> 没深入研究哈，猜测可能加了 `core-js` 跟一些基础的 `polyfill`
+
+### 使用 ESnext class 特性
+#### 对比
+　　默认时，`Vue` 单文件组件使用一个对象来描述组件内部的实现：
+```javascript
+  const App = {
+    // initialized data
+    data () {
+      return {
+        init: false
+      }
+    }
+    // lifecycle hook
+    created () {}
+    mounted () {}
+    // ...
+  }
+
+  export default App
+```
+　　我们可以通过安装一些依赖来支持最新的 `class` 写法：
+```javascript
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
+
+  @Component
+  class App extends Vue {
+    init = false;
+    created () {}
+    mounted () {}
+  }
+
+  export default App
+```
+> 不可否认，确实多些了一些代码哈，不过个人还是比较倾向新语法特性的写法的，毕竟标准即是灯塔
+> P.S 这里使用了还处于 `Stage 3` 的 [Field declarations](https://github.com/tc39/proposal-class-fields#field-declarations) 来声明组件的初始 `data`
+
+#### 使用
+　　下面来看看需要做哪些改动以支持使用 `class` 的写法：
+1. 首先，最明显的就是我们需要 `vue-class-component` 这个依赖了。
+2. 然后，这个依赖需要 `babel` 的 `transform-decorators-legacy` 插件支持。
+3. 最后，如果你也想使用 Field declarations 字段声明写法，再添加一个 `transform-class-properties` 就好了。
+
+　　安装依赖：
+```bash
+  npm i vue-class-component -D
+  npm i babel-plugin-transform-decorators-legacy -D
+  npm i babel-plugin-transform-class-properties -D
+```
+　　配置 `babel`
+```javascript
+  // .babelrc
+  {
+    // ...
+    "plugins": [
+      "transform-runtime",
+      "transform-decorators-legacy",
+      "transform-class-properties"
+    ]
+    // ...
+  }
+```
+> **注意**：`transform-decorators-legacy` 需放在 `transform-class-properties` 之前
+
 ---
 **To be continue...**
