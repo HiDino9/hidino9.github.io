@@ -33,7 +33,7 @@ cover: vuejs.jpg
 
 　　**不支持全局函数**（如：`Promise`、`Set`、`Map`），`Set` 跟 `Map` 这两种数据结构应该大家用的也不多，影响较小。但是 `Promise` 影响可能就比较大了。
 
-　　**不支持实例方法**（如：`'abc'.include('b')`、`['1', '2', '3'].find((n) => n < 2)` 等等），这个限制几乎废掉了大部分字符串和一半左右数组的新特性。
+　　**不支持实例方法**（如：`'abc'.includes('b')`、`['1', '2', '3'].find((n) => n < 2)` 等等），这个限制几乎废掉了大部分字符串和一半左右数组的新特性。
 > 一般情况下 `babel-plugin-transform-runtime` 能满足大部分的需求，当不满足需求时，推荐使用完整的 `babel-polyfill`。
 
 #### 替换 babel-polyfill
