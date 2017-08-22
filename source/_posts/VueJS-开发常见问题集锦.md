@@ -423,11 +423,26 @@ change (e) {
 > **注意**：`transform-decorators-legacy` 需放在 `transform-class-properties` 之前
 
 ### 响应式数据失效
+#### 数组
 　　由于 `Vue.js` 响应式数据依赖于**对象方法** `Object.defineProperty`。但很明显，数组这个特殊的“对象”并没有这个方法，自然也无法设置对象属性的 `descriptor`，从而也就没有 `getter()` 和 `setter()` 方法。所以在使用数组索引角标的形式更改元素数据时（`arr[index] = newVal`），视图往往无法响应式更新。
 　　为解决这个问题，`Vue.js` 中提供了 `$set()` 方法：
 ```js
 vm.arr.$set(0, 'newVal')
 // vm.arr[0] = 'newVal'
+```
+#### 对象
+> 受现代 `JavaScript` 的限制（以及废弃 `Object.observe`），`Vue` **不能检测到对象属性的添加或删除**。由于 `Vue` 会在初始化实例时对属性执行 `getter/setter` 转化过程，所以属性必须在 `data` 对象上存在才能让 `Vue` 转换它，这样才能让它是响应的。
+> Ref: [深入响应式原理 - Vue.js](https://cn.vuejs.org/v2/guide/reactivity.html#变化检测问题)
+
+```js
+var vm = new Vue({
+  data:{
+  a:1
+  }
+})
+// `vm.a` 是响应的
+vm.b = 2
+// `vm.b` 是非响应的
 ```
 ---
 **To be continue...**
