@@ -422,5 +422,12 @@ change (e) {
 ```
 > **注意**：`transform-decorators-legacy` 需放在 `transform-class-properties` 之前
 
+### 响应式数据失效
+　　由于 `Vue.js` 响应式数据依赖于**对象方法** `Object.defineProperty`。但很明显，数组这个特殊的“对象”并没有这个方法，自然也无法设置对象属性的 `descriptor`，从而也就没有 `getter()` 和 `setter()` 方法。所以在使用数组索引角标的形式更改元素数据时（`arr[index] = newVal`），视图往往无法响应式更新。
+　　为解决这个问题，`Vue.js` 中提供了 `$set()` 方法：
+```js
+vm.arr.$set(0, 'newVal')
+// vm.arr[0] = 'newVal'
+```
 ---
 **To be continue...**
