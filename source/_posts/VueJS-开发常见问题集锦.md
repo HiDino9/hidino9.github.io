@@ -436,13 +436,54 @@ vm.arr.$set(0, 'newVal')
 
 ```js
 var vm = new Vue({
-  data:{
-  a:1
+  data: {
+    a: 1
   }
 })
 // `vm.a` 是响应的
 vm.b = 2
 // `vm.b` 是非响应的
 ```
+
+### 静态类型检测
+　　推荐在开发较复杂的组件时使用 `props` 静态类型检测，提高组件的健壮性，多数情况下可以在转码阶段提前发现错误。
+```js
+  // before
+  prop: [
+    'id',
+    'multiple',
+    'callback',
+  ]
+```
+```js
+// after
+  props: {
+    id: {
+      type: [ Number, Array ],
+      required: true,
+    },
+    multiple: {
+      type: Boolean,
+      default: false,
+    },
+    callback : Function,
+  }
+```
+
+### 异步组件
+　　使用处于 `Stage.3` 阶段的动态导入函数 `import()`，同时借助 `webpack` 的代码分割功能，在 `Vue.js` 中我们可以很轻松地实现一个异步组件。
+#### 异步路由组件
+```js
+  const AsyncComponent = () => import('./AsyncComponent')
+```
+#### 异步组件工厂
+```js
+  Vue.component(
+    'async-webpack-example',
+    () => import('./my-async-component')
+  )
+```
+> 相比于异步路由组建，异步组件工厂一般适用于组件内进一步小颗粒度的拆分处理，如：大体量组件内初次加载时的非必要组件（组件内嵌套的弹窗组件或 `Popover` 组件等）。
+
 ---
 **To be continue...**
