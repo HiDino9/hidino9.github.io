@@ -40,27 +40,27 @@ cover: vuejs.jpg
 　　首先，从项目中移除 `babel-plugin-transform-runtime`
 　　卸载该依赖：
 ```bash
-npm un babel-plugin-transform-runtime -D
+  npm un babel-plugin-transform-runtime -D
 ```
 　　修改 `babel` 配置文件
 ```javascript
-// .babelrc
-{
-  //...
-  "plugins": [
-    // - "transform-runtime"
-  ]
-  //...
-}
+  // .babelrc
+  {
+    //...
+    "plugins": [
+      // - "transform-runtime"
+    ]
+    //...
+  }
 ```
 　　然后，安装 `babel-polyfill` 依赖：
 ```bash
-npm i babel-polyfill -D
+  npm i babel-polyfill -D
 ```
 　　最后，在入口文件中导入
 ```javascript
-// src/main.js
-import 'babel-polyfill'
+  // src/main.js
+  import 'babel-polyfill'
 ```
 
 ### ES6 import 引用问题
@@ -75,8 +75,8 @@ import 'babel-polyfill'
 #### 安装依赖
 　　`Vue` 中使用 `vue-loader` 根据 `lang` 属性自动判断所需要的 `loader`，所以不用额外配置 `Loader`，但是需要手动安装相关依赖：
 ```bash
-npm i pug -D
-npm i less-loader -D
+  npm i pug -D
+  npm i less-loader -D
 ```
 还是相当方便的，不用手动修改 `webpack` 的配置文件添加 `loader` 就可以使用了
 
@@ -85,33 +85,33 @@ npm i less-loader -D
 
 #### 使用
 ```html
-<!-- xxx.vue -->
-<style lang="less">
-  .action {
-    color: #ddd;
-      ul {
-        overflow: hidden;
-        li {
-          float: left;
+  <!-- xxx.vue -->
+  <style lang="less">
+    .action {
+      color: #ddd;
+        ul {
+          overflow: hidden;
+          li {
+            float: left;
+          }
+        }
+    }
+  </style>
+  <template lang="pug">
+    .action(v-if='hasRight')
+      ul
+        li 编辑
+        li 删除
+  </template>
+  <script>
+    export default {
+      data () {
+        return {
+          hasRight: true
         }
       }
-  }
-</style>
-<template lang="pug">
-  .action(v-if='hasRight')
-    ul
-      li 编辑
-      li 删除
-</template>
-<script>
-  export default {
-    data () {
-      return {
-        hasRight: true
-      }
     }
-  }
-</script>
+  </script>
 ```
 
 ### 定义全局函数或变量
@@ -121,39 +121,39 @@ npm i less-loader -D
 
 　　定义一个全局异常处理方法：
 ```javascript
-// errHandler.js
-window.errHandler = function () { // 不能使用箭头函数
-  if (err.code && err.code !== 200) {
-    this.$store.commit('err', true)
-  } else {
-    // ...
+  // errHandler.js
+  window.errHandler = function () { // 不能使用箭头函数
+    if (err.code && err.code !== 200) {
+      this.$store.commit('err', true)
+    } else {
+      // ...
+    }
   }
-}
 ```
 　　在入口文件中导入：
 ```javascript
-// src/main.js
-import 'errHandler.js'
+  // src/main.js
+  import 'errHandler.js'
 ```
 　　在组件中使用：
 ```javascript
-// xxx.vue
-export default {
-  created () {
-    this.errHandler = window.errHandler.bind(this)
-  },
-  method: {
-    getXXX () {
-      this.$http.get('xxx/xx').then(({ body: result }) => {
-        if (result.code === 200) {
-          // ...
-        } else {
-          this.errHandler(result)
-        }
-      }).catch(this.errHandler)
+  // xxx.vue
+  export default {
+    created () {
+      this.errHandler = window.errHandler.bind(this)
+    },
+    method: {
+      getXXX () {
+        this.$http.get('xxx/xx').then(({ body: result }) => {
+          if (result.code === 200) {
+            // ...
+          } else {
+            this.errHandler(result)
+          }
+        }).catch(this.errHandler)
+      }
     }
   }
-}
 ```
 #### 优雅安全型
 　　在大型多人协作的项目中，污染 `window` 对象还是不太妥当的。特别是一些比较有个人特色的全局方法（可能在你写的组件中几乎处处用到，但是对于其他人来说可能并不需要）。这时候推荐写一个模块，更优雅安全，也比较自然，唯一不足之处就是每个需要使用该函数或方法的组件都需要进行导入。
@@ -174,31 +174,31 @@ new webpack.ContextReplacementPlugin(/moment[\\/]locale$/, /^\.\/(zh-cn)$/)
 ### 自定义路径别名
 　　可能有些人注意到了，在 `vue-cli` 生成的模板中在导入组件时使用了这样的语法：
 ```javascript
-import Index from '@/components/Index'
+  import Index from '@/components/Index'
 ```
 　　这个 `@` 是什么东西？后来改配置文件的时候发现这个是 `webpack` 的配置选项之一：路径别名。
 
 　　我们也可以在基础配置文件中添加自己的路径别名，比如下面这个就把 `~` 设置为路径 `src/components` 的别名：
 ```javascript
-// build/webpack.base.js
-{
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
-      '~': resolve('src/components')
+  // build/webpack.base.js
+  {
+    resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        'vue$': 'vue/dist/vue.esm.js',
+        '@': resolve('src'),
+        '~': resolve('src/components')
+      }
     }
   }
-}
 ```
 　　然后我们导入组件的时候就可以这样写：
 ```javascript
-// import YourComponent from 'YourComponent'
-// import YourComponent from './YourComponent'
-// import YourComponent from '../YourComponent'
-// import YourComponent from '/src/components/YourComponent'
-import YourComponent from '~/YourComponent'
+  // import YourComponent from 'YourComponent'
+  // import YourComponent from './YourComponent'
+  // import YourComponent from '../YourComponent'
+  // import YourComponent from '/src/components/YourComponent'
+  import YourComponent from '~/YourComponent'
 ```
 　　既解决了路径过长的麻烦，又解决了相对路径的烦恼，方便很多吧！ヾ(ﾟ∀ﾟゞ)
 
@@ -208,12 +208,12 @@ import YourComponent from '~/YourComponent'
 
 　　我们可以通过添加 `scoped` 属性来使 `style` 中的样式只作用于当前组件：
 ```html
-<style lang="less" scoped>
-  @import 'other.less';
-  .title {
-    font-size: 1.2rem;
-  }
-</style>
+  <style lang="less" scoped>
+    @import 'other.less';
+    .title {
+      font-size: 1.2rem;
+    }
+  </style>
 ```
 > 在有 `scoped` 属性的 `style` 标签内导入其他样式，同样会受限于作用域，变为组件内样式。复用程度较高的样式不建议这样使用。
 >
@@ -226,20 +226,20 @@ import YourComponent from '~/YourComponent'
 
 　　但是相比较，更推荐下面这种写法：
 ```css
-/* 单独的全局样式文件 */
-/* style-global.less */
-body {
-  font-size: 10px;
-}
-.title {
-  font-size: 1.4rem;
-  font-weight: bolder;
-}
+  /* 单独的全局样式文件 */
+  /* style-global.less */
+  body {
+    font-size: 10px;
+  }
+  .title {
+    font-size: 1.4rem;
+    font-weight: bolder;
+  }
 ```
 　　然后在入口文件中导入全局样式：
 ```javascript
-// src/main.js
-import 'style-global.less'
+  // src/main.js
+  import 'style-global.less'
 ```
 
 ### 获取表单控件值
@@ -250,14 +250,14 @@ import 'style-global.less'
 <input type='text' @change='change($event)'>
 ```
 ```javascript
-change (e) {
-  let curVal = e.target.value
-  if (/^\d+$/.test(curVal)) {
-    this.num = +curVal
-  } else {
-    console.error('%s is not a number!', curVal)
+  change (e) {
+    let curVal = e.target.value
+    if (/^\d+$/.test(curVal)) {
+      this.num = +curVal
+    } else {
+      console.error('%s is not a number!', curVal)
+    }
   }
-}
 ```
 > 当然，如果 UI 框架采用 `Element` 会更简单，它的事件回调会直接传入当前值。
 
@@ -427,22 +427,22 @@ change (e) {
 　　由于 `Vue.js` 响应式数据依赖于**对象方法** `Object.defineProperty`。但很明显，数组这个特殊的“对象”并没有这个方法，自然也无法设置对象属性的 `descriptor`，从而也就没有 `getter()` 和 `setter()` 方法。所以在使用数组索引角标的形式更改元素数据时（`arr[index] = newVal`），视图往往无法响应式更新。
 　　为解决这个问题，`Vue.js` 中提供了 `$set()` 方法：
 ```js
-vm.arr.$set(0, 'newVal')
-// vm.arr[0] = 'newVal'
+  vm.arr.$set(0, 'newVal')
+  // vm.arr[0] = 'newVal'
 ```
 #### 对象
 > 受现代 `JavaScript` 的限制（以及废弃 `Object.observe`），`Vue` **不能检测到对象属性的添加或删除**。由于 `Vue` 会在初始化实例时对属性执行 `getter/setter` 转化过程，所以属性必须在 `data` 对象上存在才能让 `Vue` 转换它，这样才能让它是响应的。
 > Ref: [深入响应式原理 - Vue.js](https://cn.vuejs.org/v2/guide/reactivity.html#变化检测问题)
 
 ```js
-var vm = new Vue({
-  data: {
-    a: 1
-  }
-})
-// `vm.a` 是响应的
-vm.b = 2
-// `vm.b` 是非响应的
+  var vm = new Vue({
+    data: {
+      a: 1
+    }
+  })
+  // `vm.a` 是响应的
+  vm.b = 2
+  // `vm.b` 是非响应的
 ```
 
 ### 静态类型检测
