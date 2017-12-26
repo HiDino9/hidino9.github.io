@@ -45,11 +45,15 @@ cover:
   　　在通过命令行交互确定了项目初始化的细节后，就该进入最后一道工序，按照模板初始化我们的项目啦！\\(≧▽≦)/ 
   　　这里 `vue-cli` 选用的是 `Handlebars.js` —— 一个简单高效的语义化模板构建引擎。
 
+　　画了一张图，更有助于理清这些依赖在 `vue-cli` 初始化项目时的相互关联：
+![vue-cli process](vue-cli-process.png)
 > 定制模板主要围绕着**命令行交互**（`Inquirer.js`）与**模板文件开发**（`Handlebars.js`）这两部分。
 
-### meta.js 配置文件
-　　设置都在 `meta.js` 或 `meta.json` 的 `prompts` 字段中配置，推荐使用 `meta.js`，更灵活一些。以下也将以 `meta.js` 进行展开说明。
-　　`meta.js` 相当于使用 `vue-cli` 读取 `template` 生成项目时的入口文件，一共可包含如下几个字段，先简单介绍一下各字段功能：
+
+### meta.js 配置文件（Inquirer.js）
+　　由于 `meta.js` 相当于模板项目的配置文件（虽然非必选），所以这里先看看它主要能干些啥。
+　　设置都在 `meta.js` 或 `meta.json` 中配置，推荐使用 `meta.js`，更灵活一些。以下也将以 `meta.js` 进行展开说明。
+　　`meta.js` 一共可包含如下几个字段，简单列一下各字段功能：
   - `helpers` : 自定义 `Handlebars.js` 的辅助函数
   - `prompts` : 基于 `Inquirer.js` 的命令行交互配置
   - `filters` : 根据命令行交互的结果过滤将要渲染的项目文件
@@ -57,7 +61,7 @@ cover:
   - `completeMessage` : 将模板渲染为项目后，输出一些提示信息，取值为字符串
   - `complete` : 与 `completeMessage` 功能相同，二选其一，取值为函数，函数最后需返回输出的字符串
 
-### 命令行交互
+### 命令行交互（Inquirer.js）
 　　命令行交互主要是 `meta.js` 中 `prompts` 字段的配置，详细的配置可以阅读 `Inquirer.js` 的 [README.md](https://github.com/SBoudrias/Inquirer.js/#question)，这里说一下常用的交互配置：
 ```js
 // meta.js
@@ -84,7 +88,7 @@ module.export = {
 }
 ```
 字段说明：
-  - `isCustomName` 与 `sysName` : 交互字段名称，可在后续条件交互或模板渲染时通过该字段读取到交互结果
+  - `isCustomName` 与 `sysName` : 交互字段名称，**可在后续条件交互或模板渲染时通过该字段读取到交互结果**
   - `type` : 交互类型，有 `input`, `confirm`, `list`, `rawlist`, `expand`, `checkbox`, `password`, `editor` 八种类型
   - `message` : 交互的提示信息
   - `when` : 进行该条件交互的先决条件，在该例子中，`sysName` 这个交互动作只在 `isCustomName` 交互结果为真时才会出现
@@ -92,7 +96,119 @@ module.export = {
   - `required` : 默认为 `false`，该值是否为必填项
   - `validate` : 输入验证函数
 
-> 注：示例中 `default` `required` `validate` 三个字段存在逻辑问题，为了举例方便放到一起。
+> 注：示例中 `default` `required` `validate` 三个字段存在逻辑问题，仅为举例方便放到一起。
 
-### 模板渲染时的辅助函数
-　　`vue-cli` 中预置了 `if_eq` 与 `unless_eq` 辅助函数，用于使用交互所得数据来处理模板中是否渲染的两种逻辑关系。
+### 模板基本语法（Handlebars.js）
+　　在模板编写中，我们可以用 `Mustache` 语法在任何文本类型的文件中输出在命令行交互中得到的一些数据：
+```js
+// dev.js
+export default {
+  //...
+  token: '{{token}}',
+  //...
+};
+```
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{sysName}}</title>
+  </head>
+  <!-- ... -->
+</html>
+```
+　　以 `{%raw%}{{xxx}}{%endraw%}` 即为一个 `Mustache` 句法标记。以上例子中 `token` 与 `sysName` 为匹配命令行交互数据对应的键名。
+> 对 `vue` 有过了解的都知道，在模板标签中直接输出实例上的数据也是用的 `Mustache` 语法。
+> 如果定制 `vue template` 模板时不对这些数据做相应处理，在最终输出由模板初始化的项目时，这些与命令行交互得到的数据无法匹配的 `Mustache` 句法标记会被移除。
+> 此时我们需要使用反斜杠 `\{%raw%}{{xxx}}{%endraw%}` 或者 `{%raw%}{{{xxx}}}{%endraw%}` 来跳过 `Handlebars` 的处理，直接输出 `{%raw%}{{xxx}}{%endraw%}`
+
+### 模板渲染时的辅助函数（Handlebars.js）
+　　`vue-cli` 中为 `Handlebars` 预置了 `if_eq` 与 `unless_eq` 辅助函数，用于使用交互所得数据来处理模板中是否渲染的两种逻辑关系，此外 `Handlebars` 中还内置了 `if`、`unless`、`each` 等 [辅助函数](http://handlebarsjs.com/builtin_helpers.html)。
+```js
+// sys.js
+export default {
+  {{#if_eq projType 'admin'}}
+  id: {{#if_eq sysId ''}}undefined{{else}}{{sysId}}{{/if_eq}},
+  {{/if_eq}}
+  name: '{{sysName}}',
+};
+```
+　　如上，这里用了 `if_eq` 辅助函数，`projType` 代表将要匹配的键，`'admin'` 代表将要匹配的值。这个键值来自于在命令行界面与用户交互的操作结果。该栗子中，当命令行交互数据中 `CLI[projType] == 'admin'` 时，将在 `sys.js` 文件的导出数据中输出 `id` 字段；`id` 的值来自一个嵌套的 `if_eq` 辅助函数，当 `CLI[sysId] == ''` 时，`id` 将被设置为 `undefined` 否则 （`{%raw%}{{else}}{%endraw%}`）输出 `CLI[sysId]` 命令行交互所得数据中的 `sysId`。
+> 辅助函数使用语法： `{%raw%}{{{%endraw%}#` + `函数名` + ' '（空格）+ `以空格分隔的参数列表` + `}}`
+> 以空格分隔的参数列表：未用引号包裹的参数名将被将为自动取值为命令行交互结果中对应的数据
+
+### 自定义辅助函数（Handlebars.js）
+　　有时候现有的辅助函数可能不能满足我们的需求，通过 `mate.js` 中的 `helpers` 字段我们可以自定义辅助函数：
+```js
+// mate.js
+module.exports = {
+  "helpers": {
+    "neither": function (k, v1, v2, options) {
+      if (k !== v1 && k !== v2) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+    },
+  },
+  //...
+}
+```
+　　辅助函数可以接受若干的参数，最后一个参数 `options` 为辅助函数的钩子，调用 `options.fn(this)` 即输出该辅助函数运算结果为真时的内容，反之调用 `options.inverse(this)` 则输出 `{%raw%}{{else}}{%endraw%}` 的内容（如果有的话）。
+　　现在我们可以在模板中直接使用 `neither` 辅助函数了：
+```js
+{{#neigher sysType 'admin' 'mobile'}}
+isAdmin  = false
+isMobile = false
+{{else}}
+isAdminOrMobile = true
+{{/neigher}}
+```
+
+### 按条件过滤渲染文件
+　　辅助函数只可以控制文件内一部分内容的输出与否，有时候我们需要根据交互结果控制某些文件本身是否输出。
+　　在 `mate.js` 中的 `filters` 字段中进行相应的设置，就可以达到控制文件输出的效果：
+```js
+module.exports = {
+  //...
+  "filters": {
+    "project/config/test.env.js": "unit || e2e",
+    "project/src/router/**/*": "router"
+  },
+  //...
+}
+```
+　　`filters` 中**键名**是要控制输出的文件的路径，可使用字面量，也可使用 [简化的 glob 表达式](https://github.com/isaacs/minimatch)。键名对应的值为命令行交互中得到的数据。
+
+### 渲染时文件的操作
+　　在模板项目比较复杂或是有特殊需求的时候，比如：
+- 按照条件不同需要渲染两个文件名相同但内容完全不同的文件
+- 模板模块化，多个模板文件拼接渲染为一个项目文件
+- 使用 GZip 压缩一些非源码资源
+
+　　可以通过 `mate.js` 中的 `metalsmith` 字段配置相关插件来实现丰富的文件操作：
+```js
+var renamer = require('metalsmith-renamer')
+module.exports = {
+  //...
+  "metalsmith": function(metalsmith, opts, helpers) {
+    metalsmith.use(renamer({
+      index: {
+        pattern: 'project/**/+(Mobile|Admin)Index.vue',
+        rename: function(fileName) {
+          return 'Index.vue';
+        }
+      },
+      config: {
+        pattern: 'project/src/+(mobile|admin)Config.js',
+        rename: 'config.js'
+      },
+      //...
+    }))
+  },
+  //...
+}
+```
+　 以上是 `metalsmith-renamer` 插件的简单使用，更多插件可以在[这里](http://www.metalsmith.io/#the-community-plugins)查找
+> 使用 `metalsmith` 插件请注意：由于 `vue-cli` 在下载完成模板仓库后并没有 `npm install` 安装模板的项目依赖这一操作，所以在打包模板仓库的时候也需要将依赖目录 `node_modules` 一同打包，不过 `metalsmith` 的插件都很精简，一般不会有什么嵌套依赖。建议在使用前查看一下插件的相关 `Github` 仓库。
