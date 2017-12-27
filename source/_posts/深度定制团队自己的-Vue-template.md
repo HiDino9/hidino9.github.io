@@ -20,9 +20,7 @@ cover:
 
 ### **前置知识**
 1. 模板结构
-  　　首先我们先来了解模板的主要结构：
-  ![](https://placehold.it/200x300)
-  　　模板结构很简单，主要包括两个部分：
+  　　首先我们先来了解模板的主要结构，模板结构很简单，主要包括两个部分：
   - template 该目录用于存放模板文件，初始化项目生成的文件来自于此。
   - meta.js / meta.json 用于描述初始化项目时命令行的交互动作。
 
@@ -211,4 +209,6 @@ module.exports = {
 }
 ```
 　 以上是 `metalsmith-renamer` 插件的简单使用，更多插件可以在[这里](http://www.metalsmith.io/#the-community-plugins)查找
-> 使用 `metalsmith` 插件请注意：由于 `vue-cli` 在下载完成模板仓库后并没有 `npm install` 安装模板的项目依赖这一操作，所以在打包模板仓库的时候也需要将依赖目录 `node_modules` 一同打包，不过 `metalsmith` 的插件都很精简，一般不会有什么嵌套依赖。建议在使用前查看一下插件的相关 `Github` 仓库。
+> 使用 `metalsmith` 插件请注意：由于 `vue-cli` 在下载完成模板仓库后并没有 `npm install` 安装模板的项目依赖这一操作，所以在打包模板仓库的时候也需要将依赖目录 `node_modules` 一同打包，`metalsmith` 的插件都很精简，一般不会有什么嵌套依赖。不过还是建议在使用前查看一下插件的相关 `Github` 仓库。
+
+　　关于 `vue` 项目模板的开发涉及到的问题差不多就介绍完了，为自己或团队开发一份专属的 `Vue Template` 吧！
