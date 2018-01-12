@@ -1,6 +1,6 @@
 ---
 title: 深度定制团队自己的 Vue template
-date: 2017-12-07 21:08:35
+date: 2018-01-07 21:08:35
 subtitle: 深入浅出一步步定制基于 vue-cli 的 Vue template
 categories: JavaScript
 tags: [JavaScript, Vue.js, vue-cli, vue-template]
@@ -36,7 +36,7 @@ cover:
 
 4. [Inquirer.js](https://github.com/SBoudrias/Inquirer.js#question)
   　　`vue-cli` 在模板仓库下载完成后，将通过 `Inquirer.js` 根据模板仓库中的 `meta.js` 或 `meta.json` 文件中的设置，与用户进行一些简单的交互以确定项目的一些细节，如下图：
-  ![](https://placehold.it/300x200)
+  ![](cli-perview.png)
   > 该交互配置是可选的，当项目中**没有** `meta.js` 或 `meta.json` 文件时，模板仓库下载完成后将直接进入模板构建阶段。
 
 5. [Handlebars.js](https://github.com/wycats/handlebars.js/)
