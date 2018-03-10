@@ -4,7 +4,6 @@ date: 2018-03-10 11:06:20
 subtitle: 有时候基于 Vue 的单文件组件开发项目时, 不得不使用全局样式, 这时有一些地方需要注意.
 categories: Note
 tags: [JavaScript, Vue.js, CSS, scoped]
-cover:
 description: 有时候基于 Vue 的单文件组件开发项目时, 不得不使用全局样式, 这时有一些地方需要注意.
 ---
 
