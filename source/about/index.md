@@ -12,7 +12,7 @@ date: 2017-01-22 15:07:42
 </style>
 
 # 关于<span class="faded"> / About</span><span class="faded2"> / Acerca de</span>
-<blockquote class="blockquote-center">** Hi, 我是熊D **
+<blockquote class="blockquote-center">** Hi, 我是呆诺熊 **
 看看电影，玩玩域名
 听听音乐，写写代码
 看看风景，拍拍照片
@@ -23,7 +23,7 @@ date: 2017-01-22 15:07:42
 >Coder, Photographer, Cartoonist
 >Código, Fotógrafo, Caricaturista
 
-** 　　 Hey，我叫 Dino ( the D in BearD01001 comes from )，野生职业程序猿一只，周末喜欢拿着相机随处溜达拍拍照片，喜欢音乐，热爱旅行。**
+** 　　 Hey，我是呆诺熊，英文名 Dino ( the D in BearD01001 comes from )，野生职业程序猿一只，周末喜欢拿着相机随处溜达拍拍照片，喜欢音乐，热爱旅行。**
 **　　最近业余时间在学画画 & 西班牙语。加油 ** ↖(^ω^)↗
 
 ### 关于文<span class="faded"> / Article</span><span class="faded2"> / Artículo</span>
