@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.3.7"
+    "version": "3.9.0"
   },
   "scripts": {
     "relogin": "firebase login --reauth",
@@ -30,7 +30,13 @@
     "hexo-server": "^0.1.3"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "3.0.2",
     "firebase-tools": "^3.9.1",
     "hexo-cli": "^1.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
