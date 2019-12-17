@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>熊 D 博客</title>
+    <link>http://blog.BearD.ink/</link>
+    <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>写点东西，看着自己慢慢成长也蛮有趣的。</description>
+    <pubDate>Tue, 17 Dec 2019 02:43:26 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[笔记] 当在 Vue 中不得不用全局样式时...</title>
+      <link>http://blog.BearD.ink/Note/%E7%AC%94%E8%AE%B0-%E5%BD%93%E5%9C%A8-Vue-%E4%B8%AD%E4%B8%8D%E5%BE%97%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F%E6%97%B6/</link>
+      <guid>http://blog.BearD.ink/Note/%E7%AC%94%E8%AE%B0-%E5%BD%93%E5%9C%A8-Vue-%E4%B8%AD%E4%B8%8D%E5%BE%97%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F%E6%97%B6/</guid>
+      <pubDate>Fri, 09 Mar 2018 07:26:20 GMT</pubDate>
+      <description>
+      
+        有时候基于 Vue 的单文件组件开发项目时, 不得不使用全局样式, 这时有一些地方需要注意.
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/Note/%E7%AC%94%E8%AE%B0-%E5%BD%93%E5%9C%A8-Vue-%E4%B8%AD%E4%B8%8D%E5%BE%97%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F%E6%97%B6/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>深度定制团队自己的 Vue template</title>
+      <link>http://blog.BearD.ink/JavaScript/%E6%B7%B1%E5%BA%A6%E5%AE%9A%E5%88%B6%E5%9B%A2%E9%98%9F%E8%87%AA%E5%B7%B1%E7%9A%84-Vue-template/</link>
+      <guid>http://blog.BearD.ink/JavaScript/%E6%B7%B1%E5%BA%A6%E5%AE%9A%E5%88%B6%E5%9B%A2%E9%98%9F%E8%87%AA%E5%B7%B1%E7%9A%84-Vue-template/</guid>
+      <pubDate>Sun, 07 Jan 2018 13:08:35 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;众所周知，使用 &lt;code&gt;vue-cli&lt;/code&gt; 可以快速初始化一个基于 &lt;code&gt;Vue.js&lt;/code&gt; 的项目，官方提供了 &lt;code&gt;webpack&lt;/code&gt;、&lt;code&gt;pwa&lt;/code&gt;、&lt;code&gt;browserify-simple&lt;/code&gt; 等&lt;a href=&quot;https://github.com/vuejs-templates&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;常用 templates&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;当开发一个独立项目的时候，使用官方提供的 &lt;code&gt;template&lt;/code&gt; 确实非常方便，省去了繁琐的依赖安装配置、&lt;code&gt;webpack&lt;/code&gt; 配置，甚至连项目结构也不用多加考虑。&lt;/p&gt;
+&lt;p&gt;但是，当我们需要开发多个系统，每个系统相对独立但又有一些配置、依赖或逻辑相互通用的时候（例如集群的多后台系统），每次使用官方提供的 &lt;code&gt;template&lt;/code&gt; 初始化项目之后，都需要进一步调整（添加依赖、修改配置、增加通用组件等等），这显然是十分麻烦的。&lt;br&gt;本着&lt;del&gt;懒惰是第一生产力&lt;/del&gt;的初衷，我们需要定制一份自己的 &lt;code&gt;template&lt;/code&gt;，以便我们…额…偷懒哈~&lt;br&gt;&lt;img src=&quot;/JavaScript/深度定制团队自己的-Vue-template/hehe.jpg&quot; alt&gt;&lt;/p&gt;
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/%E6%B7%B1%E5%BA%A6%E5%AE%9A%E5%88%B6%E5%9B%A2%E9%98%9F%E8%87%AA%E5%B7%B1%E7%9A%84-Vue-template/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>VueJS 开发常见问题集锦</title>
+      <link>http://blog.BearD.ink/JavaScript/VueJS-%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</link>
+      <guid>http://blog.BearD.ink/JavaScript/VueJS-%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/</guid>
+      <pubDate>Thu, 13 Jul 2017 12:47:39 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;p&gt;由于公司的前端开始转向 &lt;code&gt;VueJS&lt;/code&gt;，最近开始使用这个框架进行开发，遇到一些问题记录下来，以备后用。&lt;/p&gt;
+&lt;p&gt;主要写一些 &lt;strong&gt;&lt;a href=&quot;https://cn.vuejs.org/v2/guide/&quot; target=&quot;_bla
+        
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/VueJS-%E5%BC%80%E5%8F%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>ES6 常用新特性讲解</title>
+      <link>http://blog.BearD.ink/JavaScript/ES6-%E5%B8%B8%E7%94%A8%E6%96%B0%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/</link>
+      <guid>http://blog.BearD.ink/JavaScript/ES6-%E5%B8%B8%E7%94%A8%E6%96%B0%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/</guid>
+      <pubDate>Tue, 25 Apr 2017 12:50:49 GMT</pubDate>
+      <description>
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;！干货长文预警！&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上周在公司组织了 &lt;code&gt;ES6&lt;/code&gt; 新特性的分享会，主要讲了工程化简介、&lt;code&gt;ES6&lt;/code&gt; 的新特性与前端常用的几种构建工具的配合使用。&lt;code&gt;ES6&lt;/code&gt; 这块主要讲了一些我们平时开发中经常会用到的新特性。在这里整理一下关于 &lt;code&gt;ES6&lt;/code&gt; 的部分。&lt;br&gt;&lt;/p&gt;
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/ES6-%E5%B8%B8%E7%94%A8%E6%96%B0%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>在 JavaScript 中函数为什么被称作一等公民？</title>
+      <link>http://blog.BearD.ink/JavaScript/%E5%9C%A8-JavaScript-%E4%B8%AD%E5%87%BD%E6%95%B0%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A2%AB%E7%A7%B0%E4%BD%9C%E4%B8%80%E7%AD%89%E5%85%AC%E6%B0%91%EF%BC%9F/</link>
+      <guid>http://blog.BearD.ink/JavaScript/%E5%9C%A8-JavaScript-%E4%B8%AD%E5%87%BD%E6%95%B0%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A2%AB%E7%A7%B0%E4%BD%9C%E4%B8%80%E7%AD%89%E5%85%AC%E6%B0%91%EF%BC%9F/</guid>
+      <pubDate>Thu, 06 Apr 2017 08:58:16 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;如果读过&lt;code&gt;MDN&lt;/code&gt;的话，应该会注意到&lt;code&gt;MDN&lt;/code&gt;上对&lt;code&gt;JavaScript&lt;/code&gt;的&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;定义部分&lt;/a&gt;是这样写的：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;JavaScript (JS) is a lightweight interpreted or JIT-compiled programming language with &lt;strong&gt;first-class functions&lt;/strong&gt;. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as node.js and Apache CouchDB. JavaScript is a prototype-based, multi-paradigm, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles. Read more about JavaScript.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;开篇定义中便提到了函数优先（First-class Function），也即通常所说的&lt;code&gt;JavaScript&lt;/code&gt;中的一等公民&lt;code&gt;Funciton&lt;/code&gt;。&lt;br&gt;那问题来了：这个一等公民为什么会被称作一等公民呢？哪些特征让函数在&lt;code&gt;JavaScript&lt;/code&gt;中成为了一等公民？&lt;br&gt;&lt;/p&gt;
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/%E5%9C%A8-JavaScript-%E4%B8%AD%E5%87%BD%E6%95%B0%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A2%AB%E7%A7%B0%E4%BD%9C%E4%B8%80%E7%AD%89%E5%85%AC%E6%B0%91%EF%BC%9F/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>React-小记：组件开发注意事项</title>
+      <link>http://blog.BearD.ink/JavaScript/React-%E5%B0%8F%E8%AE%B0%EF%BC%9A%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
+      <guid>http://blog.BearD.ink/JavaScript/React-%E5%B0%8F%E8%AE%B0%EF%BC%9A%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
+      <pubDate>Mon, 27 Mar 2017 14:12:01 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;组件（&lt;code&gt;Component&lt;/code&gt;）是&lt;code&gt;React&lt;/code&gt;中非常重要的概念，&lt;code&gt;React&lt;/code&gt;组件基于&lt;code&gt;jsx&lt;/code&gt;语法开发，也就是把&lt;code&gt;HTML&lt;/code&gt;写在&lt;code&gt;JS&lt;/code&gt;中，刚开始接触的时候还是蛮抵触的，什么都搅在一起感觉挺乱的。不过真正开发起来会发现，只要颗粒度划分合理，一个完整的组件，所有内容都在一个文件中维护是多么方便！&lt;br&gt;&lt;/p&gt;
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/React-%E5%B0%8F%E8%AE%B0%EF%BC%9A%E7%BB%84%E4%BB%B6%E5%BC%80%E5%8F%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>React-小记：开发环境准备</title>
+      <link>http://blog.BearD.ink/JavaScript/React-%E5%B0%8F%E8%AE%B0%EF%BC%9A%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</link>
+      <guid>http://blog.BearD.ink/JavaScript/React-%E5%B0%8F%E8%AE%B0%EF%BC%9A%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</guid>
+      <pubDate>Mon, 27 Mar 2017 13:37:06 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;写下这个标题之后我愣了几分钟，突然发现无从下笔。随后想了想，就当是学习&lt;code&gt;React&lt;/code&gt;过程中的随笔吧，写点简单的开发过程顺便记一些刚接触时踩到的坑。&lt;br&gt;&lt;/p&gt;
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/React-%E5%B0%8F%E8%AE%B0%EF%BC%9A%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>前端构建系统Gulp的使用与常用插件推荐</title>
+      <link>http://blog.BearD.ink/JavaScript/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9FGulp%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/</link>
+      <guid>http://blog.BearD.ink/JavaScript/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9FGulp%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/</guid>
+      <pubDate>Thu, 19 Jan 2017 11:01:15 GMT</pubDate>
+      <description>
+      
+        随着 Web 前端发展，前端项目变得越来越复杂，随之而来的是各种方便的工具：打包工具、转码工具、JS 与 CSS 的合并压缩工具等等。这些工具极大的提高了我们前端的代码质量，但问题也随之而来：这么多工具到底该怎么使用，难道一个个在各个工具中来回切换复制粘贴？或是在 CLI 里一条条地敲命里吗？敲完代码还要敲一堆的构建命令，说不准顺序搞错了还要功亏一篑重来一遍？纳尼？！！于是构建系统应运而生，Gulp, Grunt, Browserify, etc.使用构建系统的好处显而易见，就是一次配置，自动构建，省心省力妙不可言（怎么像广告词 orz）。此外因为配置文件的高度统一，这个配置文件几乎可以多个项目之间随便复制粘贴修修改改就可以重复使用！
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E7%B3%BB%E7%BB%9FGulp%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>函数式编程：柯里化的变型应用</title>
+      <link>http://blog.BearD.ink/JavaScript/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%EF%BC%9A%E6%9F%AF%E9%87%8C%E5%8C%96%E7%9A%84%E5%8F%98%E5%9E%8B%E5%BA%94%E7%94%A8/</link>
+      <guid>http://blog.BearD.ink/JavaScript/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%EF%BC%9A%E6%9F%AF%E9%87%8C%E5%8C%96%E7%9A%84%E5%8F%98%E5%9E%8B%E5%BA%94%E7%94%A8/</guid>
+      <pubDate>Mon, 02 Jan 2017 17:41:14 GMT</pubDate>
+      <description>
+      
+        函数柯里化不仅极大地提高了代码的可复用性与灵活性，而且降低了代码的耦合性，但是在生产环境中使用时发现了美中不足的一点，遂有此文，目的是改造柯里化函数结构，使之更方便使用、易于理解。
+      
+      </description>
+      
+      <comments>http://blog.BearD.ink/JavaScript/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%EF%BC%9A%E6%9F%AF%E9%87%8C%E5%8C%96%E7%9A%84%E5%8F%98%E5%9E%8B%E5%BA%94%E7%94%A8/#disqus_thread</comments>
+    </item>
+    
+  </channel>
+</rss>

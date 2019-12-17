@@ -1,0 +1,965 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,Vue.js,vue-cli,vue-template,">
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="熊 D 博客" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="众所周知，使用 vue-cli 可以快速初始化一个基于 Vue.js 的项目，官方提供了 webpack、pwa、browserify-simple 等常用 templates。 当开发一个独立项目的时候，使用官方提供的 template 确实非常方便，省去了繁琐的依赖安装配置、webpack 配置，甚至连项目结构也不用多加考虑。 但是，当我们需要开发多个系统，每个系统相对独立但又有一些配置、依赖">
+<meta name="keywords" content="JavaScript,Vue.js,vue-cli,vue-template">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度定制团队自己的 Vue template">
+<meta property="og:url" content="http://blog.BearD.ink/JavaScript/深度定制团队自己的-Vue-template/index.html">
+<meta property="og:site_name" content="熊 D 博客">
+<meta property="og:description" content="众所周知，使用 vue-cli 可以快速初始化一个基于 Vue.js 的项目，官方提供了 webpack、pwa、browserify-simple 等常用 templates。 当开发一个独立项目的时候，使用官方提供的 template 确实非常方便，省去了繁琐的依赖安装配置、webpack 配置，甚至连项目结构也不用多加考虑。 但是，当我们需要开发多个系统，每个系统相对独立但又有一些配置、依赖">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://blog.beard.ink/JavaScript/深度定制团队自己的-Vue-template/hehe.jpg">
+<meta property="og:image" content="http://blog.beard.ink/JavaScript/深度定制团队自己的-Vue-template/cli-perview.png">
+<meta property="og:image" content="http://blog.beard.ink/JavaScript/深度定制团队自己的-Vue-template/vue-cli-process.png">
+<meta property="og:updated_time" content="2019-12-17T02:43:26.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深度定制团队自己的 Vue template">
+<meta name="twitter:description" content="众所周知，使用 vue-cli 可以快速初始化一个基于 Vue.js 的项目，官方提供了 webpack、pwa、browserify-simple 等常用 templates。 当开发一个独立项目的时候，使用官方提供的 template 确实非常方便，省去了繁琐的依赖安装配置、webpack 配置，甚至连项目结构也不用多加考虑。 但是，当我们需要开发多个系统，每个系统相对独立但又有一些配置、依赖">
+<meta name="twitter:image" content="http://blog.beard.ink/JavaScript/深度定制团队自己的-Vue-template/hehe.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.BearD.ink/JavaScript/深度定制团队自己的-Vue-template/">
+
+  <title> 深度定制团队自己的 Vue template | 熊 D 博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1261020784&web_id=1261020784" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader" style="background-image: url('/images/home_bg.jpg');">
+      <div class="header-inner"><a class="site-home" href="/">熊 D 博客</a>
+
+<div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <div href="/" class="brand">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">熊 D 博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </div>
+  </div>
+  <p class="site-subtitle">SIMPLE BUT NOT SIMPLE.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <input type="text" id="local-search-input">
+ <span class="search-icon fa fa-search"></span>
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+      <div class="header-post"> 
+  <div class="post-header">
+      <div class="tags">
+      
+        <a href="/tags/JavaScript/" rel="tag" title="JavaScript">JavaScript</a>
+      
+        <a href="/tags/Vue-js/" rel="tag" title="Vue.js">Vue.js</a>
+      
+        <a href="/tags/vue-cli/" rel="tag" title="vue-cli">vue-cli</a>
+      
+        <a href="/tags/vue-template/" rel="tag" title="vue-template">vue-template</a>
+      
+      </div>
+      <h1>深度定制团队自己的 Vue template</h1>
+      <h2 class="subtitle">深入浅出一步步定制基于 vue-cli 的 Vue template</h2>
+      <div class="post-time">
+        <span class="post-meta-item-text">Posted on </span>
+        <time itemprop="dateCreated" datetime="2018-01-07T21:08:35+08:00" content="January 7th 2018" title="2018-01-07 21:08:35">
+          January 7th 2018
+        </time>
+      </div>
+  </div>
+ </div>
+    </header>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深度定制团队自己的 Vue template
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2018-01-07T21:08:35+08:00" content="January 7th 2018">
+              January 7th 2018
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          <!-- 
+            
+           -->
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>众所周知，使用 <code>vue-cli</code> 可以快速初始化一个基于 <code>Vue.js</code> 的项目，官方提供了 <code>webpack</code>、<code>pwa</code>、<code>browserify-simple</code> 等<a href="https://github.com/vuejs-templates" target="_blank" rel="noopener">常用 templates</a>。</p>
+<p>当开发一个独立项目的时候，使用官方提供的 <code>template</code> 确实非常方便，省去了繁琐的依赖安装配置、<code>webpack</code> 配置，甚至连项目结构也不用多加考虑。</p>
+<p>但是，当我们需要开发多个系统，每个系统相对独立但又有一些配置、依赖或逻辑相互通用的时候（例如集群的多后台系统），每次使用官方提供的 <code>template</code> 初始化项目之后，都需要进一步调整（添加依赖、修改配置、增加通用组件等等），这显然是十分麻烦的。<br>本着<del>懒惰是第一生产力</del>的初衷，我们需要定制一份自己的 <code>template</code>，以便我们…额…偷懒哈~<br><img src="/JavaScript/深度定制团队自己的-Vue-template/hehe.jpg" alt></p>
+<a id="more"></a>
+<p>在开始定制我们自己的 <code>Vue template</code> 前，我们需要了解一些前置知识：</p>
+<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a><strong>前置知识</strong></h3><ol>
+<li><p>模板结构<br>　　首先我们先来了解模板的主要结构，模板结构很简单，主要包括两个部分：</p>
+<ul>
+<li>template 该目录用于存放模板文件，初始化项目生成的文件来自于此。</li>
+<li>meta.js / meta.json 用于描述初始化项目时命令行的交互动作。</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/segmentio/metalsmith" target="_blank" rel="noopener">Metalsmith</a><br>　　<code>Metalsmith</code> 在渲染项目文件流程中角色相当于 <code>gulp.js</code>，可以通过添加一些插件对构建文件进行处理，如重命名、合并等。</p>
+</li>
+<li><p><a href="https://github.com/flipxfx/download-git-repo" target="_blank" rel="noopener">download-git-repo</a><br>　　使用 <code>vue-cli</code> 初始化项目时会使用该工具来下载目标仓库。默认的 <code>webpack</code> 等模板直接下载 <code>vue-templates</code> 中对应的模板仓库。<br>　　自定义的模板也可以是一个 GitHub 仓库，使用如下命令来初始化项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init username/repo my-project</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中 <code>username</code> 为自定义模板仓库所在的 GitHub 用户或组织名，<code>repo</code> 为仓库名。</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/SBoudrias/Inquirer.js#question" target="_blank" rel="noopener">Inquirer.js</a><br>　　<code>vue-cli</code> 在模板仓库下载完成后，将通过 <code>Inquirer.js</code> 根据模板仓库中的 <code>meta.js</code> 或 <code>meta.json</code> 文件中的设置，与用户进行一些简单的交互以确定项目的一些细节，如下图：<br><img src="/JavaScript/深度定制团队自己的-Vue-template/cli-perview.png" alt></p>
+<blockquote>
+<p>该交互配置是可选的，当项目中<strong>没有</strong> <code>meta.js</code> 或 <code>meta.json</code> 文件时，模板仓库下载完成后将直接进入模板构建阶段。</p>
+</blockquote>
+</li>
+<li><p><a href="https://github.com/wycats/handlebars.js/" target="_blank" rel="noopener">Handlebars.js</a><br>　　在通过命令行交互确定了项目初始化的细节后，就该进入最后一道工序，按照模板初始化我们的项目啦！\(≧▽≦)/<br>　　这里 <code>vue-cli</code> 选用的是 <code>Handlebars.js</code> —— 一个简单高效的语义化模板构建引擎。</p>
+</li>
+</ol>
+<p>　　画了一张图，更有助于理清这些依赖在 <code>vue-cli</code> 初始化项目时的相互关联：<br><img src="/JavaScript/深度定制团队自己的-Vue-template/vue-cli-process.png" alt="vue-cli process"></p>
+<blockquote>
+<p>定制模板主要围绕着<strong>命令行交互</strong>（<code>Inquirer.js</code>）与<strong>模板文件开发</strong>（<code>Handlebars.js</code>）这两部分。</p>
+</blockquote>
+<h3 id="meta-js-配置文件（Inquirer-js）"><a href="#meta-js-配置文件（Inquirer-js）" class="headerlink" title="meta.js 配置文件（Inquirer.js）"></a>meta.js 配置文件（Inquirer.js）</h3><p>　　由于 <code>meta.js</code> 相当于模板项目的配置文件（虽然非必选），所以这里先看看它主要能干些啥。<br>　　设置都在 <code>meta.js</code> 或 <code>meta.json</code> 中配置，推荐使用 <code>meta.js</code>，更灵活一些。以下也将以 <code>meta.js</code> 进行展开说明。<br>　　<code>meta.js</code> 一共可包含如下几个字段，简单列一下各字段功能：</p>
+<ul>
+<li><code>helpers</code> : 自定义 <code>Handlebars.js</code> 的辅助函数</li>
+<li><code>prompts</code> : 基于 <code>Inquirer.js</code> 的命令行交互配置</li>
+<li><code>filters</code> : 根据命令行交互的结果过滤将要渲染的项目文件</li>
+<li><code>metalsmith</code> : 配置 <code>Metalsmith</code> 插件，文件会像 <code>gulp.js</code> 中的 <code>pipe</code> 一样依次经过各个插件处理</li>
+<li><code>completeMessage</code> : 将模板渲染为项目后，输出一些提示信息，取值为字符串</li>
+<li><code>complete</code> : 与 <code>completeMessage</code> 功能相同，二选其一，取值为函数，函数最后需返回输出的字符串</li>
+</ul>
+<h3 id="命令行交互（Inquirer-js）"><a href="#命令行交互（Inquirer-js）" class="headerlink" title="命令行交互（Inquirer.js）"></a>命令行交互（Inquirer.js）</h3><p>　　命令行交互主要是 <code>meta.js</code> 中 <code>prompts</code> 字段的配置，详细的配置可以阅读 <code>Inquirer.js</code> 的 <a href="https://github.com/SBoudrias/Inquirer.js/#question" target="_blank" rel="noopener">README.md</a>，这里说一下常用的交互配置：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// meta.js</span></span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="string">"prompts"</span>: &#123;</span><br><span class="line">    <span class="string">"isCustomName"</span>: &#123;</span><br><span class="line">      <span class="string">"type"</span>   : <span class="string">"confirm"</span>,</span><br><span class="line">      <span class="string">"message"</span>: <span class="string">"是否自定义系统名称？"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"sysName"</span>: &#123;</span><br><span class="line">      <span class="string">"type"</span>    : <span class="string">"input"</span>,</span><br><span class="line">      <span class="string">"when"</span>    : <span class="string">"isCustomName"</span>,</span><br><span class="line">      <span class="string">"default"</span> : <span class="string">"默认系统名称"</span>,</span><br><span class="line">      <span class="string">"message"</span> : <span class="string">"请输入系统名称:"</span>,</span><br><span class="line">      <span class="string">"required"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"validate"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!val) <span class="keyword">return</span> <span class="string">'(✘) 请输入系统名称，该名称将设为 index.html 的 title'</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>字段说明：</p>
+<ul>
+<li><code>isCustomName</code> 与 <code>sysName</code> : 交互字段名称，<strong>可在后续条件交互或模板渲染时通过该字段读取到交互结果</strong></li>
+<li><code>type</code> : 交互类型，有 <code>input</code>, <code>confirm</code>, <code>list</code>, <code>rawlist</code>, <code>expand</code>, <code>checkbox</code>, <code>password</code>, <code>editor</code> 八种类型</li>
+<li><code>message</code> : 交互的提示信息</li>
+<li><code>when</code> : 进行该条件交互的先决条件，在该例子中，<code>sysName</code> 这个交互动作只在 <code>isCustomName</code> 交互结果为真时才会出现</li>
+<li><code>default</code> : 默认值，当用户输入为空时，交互结果即为此值</li>
+<li><code>required</code> : 默认为 <code>false</code>，该值是否为必填项</li>
+<li><code>validate</code> : 输入验证函数</li>
+</ul>
+<blockquote>
+<p>注：示例中 <code>default</code> <code>required</code> <code>validate</code> 三个字段存在逻辑问题，仅为举例方便放到一起。</p>
+</blockquote>
+<h3 id="模板基本语法（Handlebars-js）"><a href="#模板基本语法（Handlebars-js）" class="headerlink" title="模板基本语法（Handlebars.js）"></a>模板基本语法（Handlebars.js）</h3><p>　　在模板编写中，我们可以用 <code>Mustache</code> 语法在任何文本类型的文件中输出在命令行交互中得到的一些数据：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dev.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  token: <span class="string">'&#123;&#123;token&#125;&#125;'</span>,</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;&#123;sysName&#125;&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>　　以 <code>{{xxx}}</code> 即为一个 <code>Mustache</code> 句法标记。以上例子中 <code>token</code> 与 <code>sysName</code> 为匹配命令行交互数据对应的键名。</p>
+<blockquote>
+<p>对 <code>vue</code> 有过了解的都知道，在模板标签中直接输出实例上的数据也是用的 <code>Mustache</code> 语法。<br>如果定制 <code>vue template</code> 模板时不对这些数据做相应处理，在最终输出由模板初始化的项目时，这些与命令行交互得到的数据无法匹配的 <code>Mustache</code> 句法标记会被移除。<br>此时我们需要使用反斜杠 <code>\{{xxx}}</code> 或者 <code>{{{xxx}}}</code> 来跳过 <code>Handlebars</code> 的处理，直接输出 <code>{{xxx}}</code></p>
+</blockquote>
+<h3 id="模板渲染时的辅助函数（Handlebars-js）"><a href="#模板渲染时的辅助函数（Handlebars-js）" class="headerlink" title="模板渲染时的辅助函数（Handlebars.js）"></a>模板渲染时的辅助函数（Handlebars.js）</h3><p>　　<code>vue-cli</code> 中为 <code>Handlebars</code> 预置了 <code>if_eq</code> 与 <code>unless_eq</code> 辅助函数，用于使用交互所得数据来处理模板中是否渲染的两种逻辑关系，此外 <code>Handlebars</code> 中还内置了 <code>if</code>、<code>unless</code>、<code>each</code> 等 <a href="http://handlebarsjs.com/builtin_helpers.html" target="_blank" rel="noopener">辅助函数</a>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// sys.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  &#123;&#123;#if_eq projType 'admin'&#125;&#125;</span><br><span class="line">  id: &#123;&#123;#if_eq sysId ''&#125;&#125;undefined&#123;&#123;else&#125;&#125;&#123;&#123;sysId&#125;&#125;&#123;&#123;/if_eq&#125;&#125;,</span><br><span class="line">  &#123;&#123;/if_eq&#125;&#125;</span><br><span class="line">  name: <span class="string">'&#123;&#123;sysName&#125;&#125;'</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>　　如上，这里用了 <code>if_eq</code> 辅助函数，<code>projType</code> 代表将要匹配的键，<code>&#39;admin&#39;</code> 代表将要匹配的值。这个键值来自于在命令行界面与用户交互的操作结果。该栗子中，当命令行交互数据中 <code>CLI[projType] == &#39;admin&#39;</code> 时，将在 <code>sys.js</code> 文件的导出数据中输出 <code>id</code> 字段；<code>id</code> 的值来自一个嵌套的 <code>if_eq</code> 辅助函数，当 <code>CLI[sysId] == &#39;&#39;</code> 时，<code>id</code> 将被设置为 <code>undefined</code> 否则 （<code>{{else}}</code>）输出 <code>CLI[sysId]</code> 命令行交互所得数据中的 <code>sysId</code>。</p>
+<blockquote>
+<p>辅助函数使用语法： <code>{{#</code> + <code>函数名</code> + ‘ ‘（空格）+ <code>以空格分隔的参数列表</code> + <code>}}</code><br>以空格分隔的参数列表：未用引号包裹的参数名将被将为自动取值为命令行交互结果中对应的数据</p>
+</blockquote>
+<h3 id="自定义辅助函数（Handlebars-js）"><a href="#自定义辅助函数（Handlebars-js）" class="headerlink" title="自定义辅助函数（Handlebars.js）"></a>自定义辅助函数（Handlebars.js）</h3><p>　　有时候现有的辅助函数可能不能满足我们的需求，通过 <code>mate.js</code> 中的 <code>helpers</code> 字段我们可以自定义辅助函数：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mate.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="string">"helpers"</span>: &#123;</span><br><span class="line">    <span class="string">"neither"</span>: <span class="function"><span class="keyword">function</span> (<span class="params">k, v1, v2, options</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (k !== v1 &amp;&amp; k !== v2) &#123;</span><br><span class="line">        <span class="keyword">return</span> options.fn(<span class="keyword">this</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> options.inverse(<span class="keyword">this</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　辅助函数可以接受若干的参数，最后一个参数 <code>options</code> 为辅助函数的钩子，调用 <code>options.fn(this)</code> 即输出该辅助函数运算结果为真时的内容，反之调用 <code>options.inverse(this)</code> 则输出 <code>{{else}}</code> 的内容（如果有的话）。<br>　　现在我们可以在模板中直接使用 <code>neither</code> 辅助函数了：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;#neigher sysType 'admin' 'mobile'&#125;&#125;</span><br><span class="line">isAdmin  = <span class="literal">false</span></span><br><span class="line">isMobile = <span class="literal">false</span></span><br><span class="line">&#123;&#123;<span class="keyword">else</span>&#125;&#125;</span><br><span class="line">isAdminOrMobile = <span class="literal">true</span></span><br><span class="line">&#123;&#123;/neigher&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="按条件过滤渲染文件"><a href="#按条件过滤渲染文件" class="headerlink" title="按条件过滤渲染文件"></a>按条件过滤渲染文件</h3><p>　　辅助函数只可以控制文件内一部分内容的输出与否，有时候我们需要根据交互结果控制某些文件本身是否输出。<br>　　在 <code>mate.js</code> 中的 <code>filters</code> 字段中进行相应的设置，就可以达到控制文件输出的效果：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="string">"filters"</span>: &#123;</span><br><span class="line">    <span class="string">"project/config/test.env.js"</span>: <span class="string">"unit || e2e"</span>,</span><br><span class="line">    <span class="string">"project/src/router/**/*"</span>: <span class="string">"router"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　<code>filters</code> 中<strong>键名</strong>是要控制输出的文件的路径，可使用字面量，也可使用 <a href="https://github.com/isaacs/minimatch" target="_blank" rel="noopener">简化的 glob 表达式</a>。键名对应的值为命令行交互中得到的数据。</p>
+<h3 id="渲染时文件的操作"><a href="#渲染时文件的操作" class="headerlink" title="渲染时文件的操作"></a>渲染时文件的操作</h3><p>　　在模板项目比较复杂或是有特殊需求的时候，比如：</p>
+<ul>
+<li>按照条件不同需要渲染两个文件名相同但内容完全不同的文件</li>
+<li>模板模块化，多个模板文件拼接渲染为一个项目文件</li>
+<li>使用 GZip 压缩一些非源码资源</li>
+</ul>
+<p>　　可以通过 <code>mate.js</code> 中的 <code>metalsmith</code> 字段配置相关插件来实现丰富的文件操作：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> renamer = <span class="built_in">require</span>(<span class="string">'metalsmith-renamer'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="string">"metalsmith"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">metalsmith, opts, helpers</span>) </span>&#123;</span><br><span class="line">    metalsmith.use(renamer(&#123;</span><br><span class="line">      index: &#123;</span><br><span class="line">        pattern: <span class="string">'project/**/+(Mobile|Admin)Index.vue'</span>,</span><br><span class="line">        rename: <span class="function"><span class="keyword">function</span>(<span class="params">fileName</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="string">'Index.vue'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      config: &#123;</span><br><span class="line">        pattern: <span class="string">'project/src/+(mobile|admin)Config.js'</span>,</span><br><span class="line">        rename: <span class="string">'config.js'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">//...</span></span><br><span class="line">    &#125;))</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　 以上是 <code>metalsmith-renamer</code> 插件的简单使用，更多插件可以在<a href="http://www.metalsmith.io/#the-community-plugins" target="_blank" rel="noopener">这里</a>查找</p>
+<blockquote>
+<p>使用 <code>metalsmith</code> 插件请注意：由于 <code>vue-cli</code> 在下载完成模板仓库后并没有 <code>npm install</code> 安装模板的项目依赖这一操作，所以在打包模板仓库的时候也需要将依赖目录 <code>node_modules</code> 一同打包，<code>metalsmith</code> 的插件都很精简，一般不会有什么嵌套依赖。不过还是建议在使用前查看一下插件的相关 <code>Github</code> 仓库。</p>
+</blockquote>
+<p>　　关于 <code>vue</code> 项目模板的开发涉及到的问题差不多就介绍完了，为自己或团队开发一份专属的 <code>Vue Template</code> 吧！</p>
+
+        所有文章非特别说明皆为原创。技术更迭迅猛，部分内容可能会作修改，为保证信息与源同步，转载时请务必注明文章出处！谢谢合作 :-)
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/Vue-js/" rel="tag">#Vue.js</a>
+          
+            <a href="/tags/vue-cli/" rel="tag">#vue-cli</a>
+          
+            <a href="/tags/vue-template/" rel="tag">#vue-template</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/JavaScript/VueJS-开发常见问题集锦/" rel="next" title="VueJS 开发常见问题集锦">
+                <i class="fa fa-chevron-left"></i> VueJS 开发常见问题集锦
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Note/笔记-当在-Vue-中不得不使用全局样式时/" rel="prev" title="[笔记] 当在 Vue 中不得不用全局样式时...">
+                [笔记] 当在 Vue 中不得不用全局样式时... <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="熊D01001（BearD01001）">
+          <p class="site-author-name" itemprop="name">熊D01001（BearD01001）</p>
+          <p class="site-description motion-element" itemprop="description">写点东西，看着自己慢慢成长也蛮有趣的。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/BearD01001" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.instagram.com/BearD01001" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lookime" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/HiDino9" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置知识"><span class="nav-number">1.</span> <span class="nav-text">前置知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta-js-配置文件（Inquirer-js）"><span class="nav-number">2.</span> <span class="nav-text">meta.js 配置文件（Inquirer.js）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行交互（Inquirer-js）"><span class="nav-number">3.</span> <span class="nav-text">命令行交互（Inquirer.js）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板基本语法（Handlebars-js）"><span class="nav-number">4.</span> <span class="nav-text">模板基本语法（Handlebars.js）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板渲染时的辅助函数（Handlebars-js）"><span class="nav-number">5.</span> <span class="nav-text">模板渲染时的辅助函数（Handlebars.js）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义辅助函数（Handlebars-js）"><span class="nav-number">6.</span> <span class="nav-text">自定义辅助函数（Handlebars.js）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按条件过滤渲染文件"><span class="nav-number">7.</span> <span class="nav-text">按条件过滤渲染文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染时文件的操作"><span class="nav-number">8.</span> <span class="nav-text">渲染时文件的操作</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">熊D01001（BearD01001）</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/BearD01001/hexo-theme-nextd">
+    NexTD
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <style>
+        .gitment-editor-avatar {
+            border-bottom: none !important;
+        }
+        .gitment-container a:hover {
+            text-decoration: none !important;
+        }
+        .gitment-markdown a,
+        .gitment-footer-project-link {
+            color: #555 !important;
+        }
+        .gitment-footer-project-link:hover,
+        .gitment-editor-logout-link:hover,
+        .gitment-editor-footer-tip:hover,
+        .gitment-header-issue-link:hover,
+        .gitment-comment-name:hover,
+        .gitment-markdown a:hover {
+            color: #222 !important;
+        }
+    </style>
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var id = '1515330515000';
+            var owner = 'BearD01001';
+            var repo = 'beard01001.github.io';
+            var clientId = '7e6796bf4bd74a25333f';
+            var clientSecret = 'd190223868b2175fbce4094e6485195cef7d3e8a';
+
+            var gitment = new Gitment({
+                id: id,
+                owner: owner,
+                repo: repo,
+                oauth: {
+                    client_id: clientId,
+                    client_secret: clientSecret,
+                },
+            });
+            gitment.render('comments');
+        })();
+    </script>
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').fadeToggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ decodeURIComponent(data_url) +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').fadeOut(function() {
+          $(".popoverlay").remove();
+          $('body').css('overflow', '');
+      });
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

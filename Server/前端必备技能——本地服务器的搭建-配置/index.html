@@ -1,0 +1,991 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Apache,XAMPP,Server,本地服务器,虚拟主机,">
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="熊 D 博客" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="虽说各种前端 Build system 均有各自的静态服务器插件提供使用，但是每次使用均需要反复启动并长时间占用一个 Terminal 窗口，并不是很方便。对于需要长期开发和维护的项目，搭建一个持续稳定的本地服务是很有必要的。">
+<meta name="keywords" content="Apache,XAMPP,Server,本地服务器,虚拟主机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端必备技能——本地服务器的搭建&amp;配置">
+<meta property="og:url" content="http://blog.BearD.ink/Server/前端必备技能——本地服务器的搭建-配置/index.html">
+<meta property="og:site_name" content="熊 D 博客">
+<meta property="og:description" content="虽说各种前端 Build system 均有各自的静态服务器插件提供使用，但是每次使用均需要反复启动并长时间占用一个 Terminal 窗口，并不是很方便。对于需要长期开发和维护的项目，搭建一个持续稳定的本地服务是很有必要的。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/banner-frontend.png">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/xampp-installation.png">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/xampp-interface.png">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/configure-web-root.png">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/virtual-host-config.png">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/install-apache-into-system-service.png">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/html-example.png">
+<meta property="og:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/run-in-browser.png">
+<meta property="og:updated_time" content="2019-12-17T02:43:26.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端必备技能——本地服务器的搭建&amp;配置">
+<meta name="twitter:description" content="虽说各种前端 Build system 均有各自的静态服务器插件提供使用，但是每次使用均需要反复启动并长时间占用一个 Terminal 窗口，并不是很方便。对于需要长期开发和维护的项目，搭建一个持续稳定的本地服务是很有必要的。">
+<meta name="twitter:image" content="http://blog.beard.ink/Server/前端必备技能——本地服务器的搭建-配置/banner-frontend.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.BearD.ink/Server/前端必备技能——本地服务器的搭建-配置/">
+
+  <title> 前端必备技能——本地服务器的搭建&配置 | 熊 D 博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1261020784&web_id=1261020784" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader" style="background-image: url('/images/home_bg.jpg');">
+      <div class="header-inner"><a class="site-home" href="/">熊 D 博客</a>
+
+<div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <div href="/" class="brand">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">熊 D 博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </div>
+  </div>
+  <p class="site-subtitle">SIMPLE BUT NOT SIMPLE.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <input type="text" id="local-search-input">
+ <span class="search-icon fa fa-search"></span>
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+      <div class="header-post"> 
+  <div class="post-header">
+      <div class="tags">
+      
+        <a href="/tags/Apache/" rel="tag" title="Apache">Apache</a>
+      
+        <a href="/tags/XAMPP/" rel="tag" title="XAMPP">XAMPP</a>
+      
+        <a href="/tags/Server/" rel="tag" title="Server">Server</a>
+      
+        <a href="/tags/本地服务器/" rel="tag" title="本地服务器">本地服务器</a>
+      
+        <a href="/tags/虚拟主机/" rel="tag" title="虚拟主机">虚拟主机</a>
+      
+      </div>
+      <h1>前端必备技能——本地服务器的搭建&配置</h1>
+      <h2 class="subtitle"></h2>
+      <div class="post-time">
+        <span class="post-meta-item-text">Posted on </span>
+        <time itemprop="dateCreated" datetime="2016-11-09T19:56:37+08:00" content="November 9th 2016" title="2016-11-09 19:56:37">
+          November 9th 2016
+        </time>
+      </div>
+  </div>
+ </div>
+    </header>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端必备技能——本地服务器的搭建&配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T19:56:37+08:00" content="November 9th 2016">
+              November 9th 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Server/" itemprop="url" rel="index">
+                    <span itemprop="name">Server</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          <!-- 
+            
+           -->
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/Server/前端必备技能——本地服务器的搭建-配置/banner-frontend.png" class="full-image">
+<p>虽说各种前端 <em>Build system</em> 均有各自的静态服务器插件提供使用，但是每次使用均需要反复启动并长时间占用一个 <em>Terminal</em> 窗口，并不是很方便。</p>
+<p>对于需要长期开发和维护的项目，搭建一个持续稳定的本地服务是很有必要的。<br><a id="more"></a></p>
+<p>本篇文章就简单介绍一下本地服务器的搭建与配置。</p>
+<p>这里推荐使用集成环境 <strong>XAMPP</strong> ，选择它的主要原因是因为有比较友好的控制面板哈，此外后端开发我目前一直在使用 <em>PHP</em> 。<br>该集成环境 <em>Windows</em>、<em>OS X</em>、<em>Linux</em> 多平台持续更新哈~</p>
+<p>下载完对应平台的安装包我们就开始吧！</p>
+<ol>
+<li><h3 id="XAMPP-安装组件的选择"><a href="#XAMPP-安装组件的选择" class="headerlink" title="XAMPP 安装组件的选择"></a>XAMPP 安装组件的选择</h3><p> 这里要简单讲一下 <em>Windows</em> 平台安装时的组件选择，<em>Linux</em> 用户可以跳过~，<em>OS X</em> 不太清楚哈</p>
+<p> <img src="/Server/前端必备技能——本地服务器的搭建-配置/xampp-installation.png" alt="安装XAMPP"></p>
+<ul>
+<li><em>Apache</em> 服务器组件是必选的哈，不介绍了。由于偶尔会写一点后端代码，所以我这里把 <em>MySQL</em> 数据库也装上了，下边的 <em>PHPMyAdmin</em> 是用来管理数据库的，这个集成环境的 <em>PHP</em> 也是必选的哈，目前已经更新到7.0.9了，据说比5快一倍2333~</li>
+<li><em>FileZilla</em> 是个 <em>FTP</em> 服务器、<em>Mercury</em> 是邮件服务器，含义简单明了，不过对于用来测试的本地服务器来说用处都不大。</li>
+<li><em>Tomcat</em> 如果有喜欢使用 <em>JSP</em> 的后端同学可以把 <em>Tomcat</em> 也勾选上~</li>
+<li><em>Perl</em> 通用脚本语言，这么火没用过肯定也听说过哈</li>
+<li><em>Webbalizer</em> 日志分析系统</li>
+<li><p><em>Fake Sendmail</em> 支持 <em>PHP</em> 发邮件的组件</p>
+<p>组件选择完之后就可以一路 <em>Next</em> 下去嘞,直到安装完成</p>
+<p><img src="/Server/前端必备技能——本地服务器的搭建-配置/xampp-interface.png" alt="XAMPP主界面"></p>
+</li>
+</ul>
+</li>
+<li><h3 id="修改服务器根目录指向"><a href="#修改服务器根目录指向" class="headerlink" title="修改服务器根目录指向"></a>修改服务器根目录指向</h3><p> 依次点击 <em>XAMPP</em> 控制面板上 <em>Apache</em> 所在行后面的 <em>Config</em> → <em>Apache (httpd.conf)</em>，打开 <em>Apache</em> 主配置文件 <em>httpd.conf</em>。</p>
+<p> <img src="/Server/前端必备技能——本地服务器的搭建-配置/configure-web-root.png" alt="修改服务器根目录"></p>
+<p> 这里主要讲一下本地服务器根目录的设置，将 <em>DocumentRoot</em> 与 <em>Directory</em> 的路径改为你常使用的工作目录，如这里改成‘<em>D:/DinoWeb</em>’。</p>
+<p> 该目录将作为服务器的根目录使用。默认情况下，在浏览器中输入 <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a> 或 <a href="http://127.0.0.1" target="_blank" rel="noopener">http://127.0.0.1</a> 将直接访问到这个目录</p>
+<p> <em>Directory</em> 中还有一些可选参数，简单介绍一下：</p>
+<ul>
+<li><p><em>Options</em>：可选指令集，多个值以空格分隔，值前可用 ‘+’/‘-‘ 表示从父目录继承指令后对所继承指令的增删，可选值‘<em>None</em>’、‘<em>All</em>’或以下组合：</p>
+<ul>
+<li><p><em>Indexes</em> - 无 <em>index.html/index.htm/index.php</em> 等文件时是否列出文件目录</p>
+</li>
+<li><p><em>FollowSymLinks</em> - 在该目录中，服务器将跟踪符号链接</p>
+<blockquote>
+<p>符号链接：<em>Linux</em> 系统中文件的快捷方式，在该目录中可以建立符号链接，以访问其他目录中的文件，配置此项以减少 <em>Apache</em> 调用其他系统函数检测符号链接。</p>
+</blockquote>
+</li>
+<li><p><em>Includes</em> - 开启 <em>SSI</em>（即让 <em>html</em> 文件也支持相互 <em>include</em>）</p>
+</li>
+<li><p><em>ExecCGI</em> - 准许使用 <em>CGI</em></p>
+</li>
+<li><p><a href="http://httpd.apache.org/docs/2.4/mod/core.html#options" target="_blank" rel="noopener">更多…</a> （偷个懒，其他就不写了哈~）</p>
+</li>
+</ul>
+</li>
+<li><p><em>AllowOverride</em>：是否支持 <em>url rewrite</em>，值为 <em>All</em> 时则访问服务器时会读取目录下 <code>.htaccess</code> 文件以重写 <em>url</em>；</p>
+<blockquote>
+<p>粗暴点解释就是：浏览器访问 <em>a.html</em> 文件通过 <code>.htaccess</code> 处理之后实际上给你的是 <em>balabala.html</em> 的内容，但浏览器地址栏中显示的还是 <em>a.html</em>，目录重写同理。</p>
+</blockquote>
+</li>
+<li><p><em>Require all granted/denied</em>：是否允许访问。</p>
+</li>
+</ul>
+</li>
+<li><h3 id="虚拟主机的配置"><a href="#虚拟主机的配置" class="headerlink" title="虚拟主机的配置"></a>虚拟主机的配置</h3><p> 为了更好地模拟真实的运行环境，一般推荐为每个项目配置一个独立的虚拟主机，而不是通过子目录的形式进行访问（例： <a href="http://localhost/myobject1" target="_blank" rel="noopener">http://localhost/myobject1</a> ），使用 <a href="http://myobject1.local" target="_blank" rel="noopener">http://myobject1.local</a> 进行访问更加优雅自然~</p>
+<ol>
+<li><h4 id="首先检查-httpd-conf"><a href="#首先检查-httpd-conf" class="headerlink" title="首先检查 httpd.conf"></a>首先检查 <code>httpd.conf</code></h4><p> 主配置文件中是否加载了虚拟主机配置文件，找到如下配置</p>
+ <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Include</span> <span class="keyword">conf</span>/extra/httpd-vhosts.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<p> 若该行使用‘#’号被注释，记得去掉‘#’号以加载虚拟主机配置文件。</p>
+</li>
+<li><h4 id="然后配置httpd-vhosts-conf"><a href="#然后配置httpd-vhosts-conf" class="headerlink" title="然后配置httpd-vhosts.conf"></a>然后配置<code>httpd-vhosts.conf</code></h4><p> 依次点击 <em>XAMPP</em> 控制面板上 <em>Apache</em> 所在行后面的 <em>Config</em> → <em><browse> [Apache]</browse></em>，打开 <em>Apache</em> 所在文件夹，打开 <em>/conf/extra</em> 目录中的 <code>httpd-vhosts.conf</code> 虚拟主机配置文件。在文件末尾加上自己的虚拟主机配置：</p>
+<p> <img src="/Server/前端必备技能——本地服务器的搭建-配置/virtual-host-config.png" alt="虚拟主机配置"></p>
+<p> <strong>VirtualHost</strong> 指定了一个虚拟主机的 <em>IP</em> 地址与端口，端口默认为 <em>80</em>，<em>IP</em> 只要是内部回送地址就 <em>OK</em>，但不要用 <em>127.0.0.1</em>，这个是给根目录预留的哈，简单将一下其中的参数：</p>
+<ul>
+<li><p><em>Document</em> 与 <em>Directory</em> 和根目录配置一样，指虚拟主机所指向的目录。这里在 <em>Directory</em> 中重写了可选命令‘<em>-Indexes</em>’，代表目录中没有索引文件的时候禁止显示文件列表；</p>
+</li>
+<li><p><em>ServerName</em> - 虚拟主机名称，备注一样的存在~</p>
+</li>
+<li><p><em>DirectoryIndex</em> - 目录索引文件，就是首页入口 <em>index.html</em>、<em>default.html</em> 之类；</p>
+</li>
+<li><p><em>ErrorLog</em> - 异常日志</p>
+</li>
+<li><p><em>CustomLog</em> - 使用 <code>httpd.conf</code> 中默认声明的 <em>common</em> 日志格式来记录访问日志（说白了就是普通的访问日志不必记录的那么详细，简单点记就够用了）</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><h3 id="设置本地-Hosts"><a href="#设置本地-Hosts" class="headerlink" title="设置本地 Hosts"></a>设置本地 Hosts</h3><p> 打开系统盘 <em>/Windows/System32/drivers/etc</em> 目录中的 <code>Hosts</code> 文件，在文件最末加上如下回送 <em>IP</em> 指向（类似小的 <em>DNS</em> 系统~）：</p>
+ <figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0.0.2</span> hello.local</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>127.0.0.2 - 上文配置虚拟主机时 <em>VirtualHost</em> 的回送 IP<br><strong>hello.local</strong> - 虚拟域名（类似于 <em>localhost</em>，名称随你喜欢想怎么起就怎么起~）</p>
+</blockquote>
+</li>
+<li><h3 id="将-Apache-amp-MySQL-安装为系统服务并启动"><a href="#将-Apache-amp-MySQL-安装为系统服务并启动" class="headerlink" title="将 Apache&amp;MySQL 安装为系统服务并启动"></a>将 Apache&amp;MySQL 安装为系统服务并启动</h3><p> 所有的配置完成后就可以启动服务了，点击每行 <em>Action</em> 中的 <em>Start</em> 即可启动！~(≧▽≦)/~</p>
+<blockquote>
+<p>推荐将 <em>Apache</em> 与 <em>MySQL</em>（如果你需要的话）安装为系统服务，这样每次系统启动的时候就会自动加载主机服务，免去了手动启动的麻烦，依次点击每行最前面的大红叉即可安装为系统服务。</p>
+</blockquote>
+<p> <img src="/Server/前端必备技能——本地服务器的搭建-配置/install-apache-into-system-service.png" alt="将 Apache 安装为系统服务"></p>
+</li>
+<li><h3 id="赶紧写个栗子测试一下吧"><a href="#赶紧写个栗子测试一下吧" class="headerlink" title="赶紧写个栗子测试一下吧~"></a>赶紧写个栗子测试一下吧~</h3><ol>
+<li><p>写个 <code>index.html</code> 放入虚拟主机所在目录（即上文中的 <em>D:/DinoWeb/HelloWorld</em>）<br> <img src="/Server/前端必备技能——本地服务器的搭建-配置/html-example.png" alt="HTML 栗子"></p>
+</li>
+<li><p>直接在浏览器地址栏中输入 <code>Hosts</code> 配置中所填的虚拟域名（即上文的 <a href="http://hello.local" target="_blank" rel="noopener">http://hello.local</a> ）即可直接访问！<br> <img src="/Server/前端必备技能——本地服务器的搭建-配置/run-in-browser.png" alt="访问你的本地虚拟主机"></p>
+</li>
+</ol>
+</li>
+</ol>
+<p>现在你已经有了一个自己配置的本地服务器了！赶快试一下吧！！为你的每个项目配置一个独立的虚拟主机~</p>
+<p>OVER.</p>
+
+        所有文章非特别说明皆为原创。技术更迭迅猛，部分内容可能会作修改，为保证信息与源同步，转载时请务必注明文章出处！谢谢合作 :-)
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Apache/" rel="tag">#Apache</a>
+          
+            <a href="/tags/XAMPP/" rel="tag">#XAMPP</a>
+          
+            <a href="/tags/Server/" rel="tag">#Server</a>
+          
+            <a href="/tags/本地服务器/" rel="tag">#本地服务器</a>
+          
+            <a href="/tags/虚拟主机/" rel="tag">#虚拟主机</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Photoshop/前端必备技能——切图：进阶篇/" rel="next" title="前端必备技能——切图：进阶篇">
+                <i class="fa fa-chevron-left"></i> 前端必备技能——切图：进阶篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JavaScript/函数式编程：柯里化的变型应用/" rel="prev" title="函数式编程：柯里化的变型应用">
+                函数式编程：柯里化的变型应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="熊D01001（BearD01001）">
+          <p class="site-author-name" itemprop="name">熊D01001（BearD01001）</p>
+          <p class="site-description motion-element" itemprop="description">写点东西，看着自己慢慢成长也蛮有趣的。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/BearD01001" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.instagram.com/BearD01001" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lookime" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/HiDino9" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XAMPP-安装组件的选择"><span class="nav-number">1.</span> <span class="nav-text">XAMPP 安装组件的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改服务器根目录指向"><span class="nav-number">2.</span> <span class="nav-text">修改服务器根目录指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟主机的配置"><span class="nav-number">3.</span> <span class="nav-text">虚拟主机的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先检查-httpd-conf"><span class="nav-number">3.1.</span> <span class="nav-text">首先检查 httpd.conf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后配置httpd-vhosts-conf"><span class="nav-number">3.2.</span> <span class="nav-text">然后配置httpd-vhosts.conf</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置本地-Hosts"><span class="nav-number">4.</span> <span class="nav-text">设置本地 Hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将-Apache-amp-MySQL-安装为系统服务并启动"><span class="nav-number">5.</span> <span class="nav-text">将 Apache&amp;MySQL 安装为系统服务并启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赶紧写个栗子测试一下吧"><span class="nav-number">6.</span> <span class="nav-text">赶紧写个栗子测试一下吧~</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">熊D01001（BearD01001）</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/BearD01001/hexo-theme-nextd">
+    NexTD
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <style>
+        .gitment-editor-avatar {
+            border-bottom: none !important;
+        }
+        .gitment-container a:hover {
+            text-decoration: none !important;
+        }
+        .gitment-markdown a,
+        .gitment-footer-project-link {
+            color: #555 !important;
+        }
+        .gitment-footer-project-link:hover,
+        .gitment-editor-logout-link:hover,
+        .gitment-editor-footer-tip:hover,
+        .gitment-header-issue-link:hover,
+        .gitment-comment-name:hover,
+        .gitment-markdown a:hover {
+            color: #222 !important;
+        }
+    </style>
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var id = '1478692597000';
+            var owner = 'BearD01001';
+            var repo = 'beard01001.github.io';
+            var clientId = '7e6796bf4bd74a25333f';
+            var clientSecret = 'd190223868b2175fbce4094e6485195cef7d3e8a';
+
+            var gitment = new Gitment({
+                id: id,
+                owner: owner,
+                repo: repo,
+                oauth: {
+                    client_id: clientId,
+                    client_secret: clientSecret,
+                },
+            });
+            gitment.render('comments');
+        })();
+    </script>
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').fadeToggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ decodeURIComponent(data_url) +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').fadeOut(function() {
+          $(".popoverlay").remove();
+          $('body').css('overflow', '');
+      });
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

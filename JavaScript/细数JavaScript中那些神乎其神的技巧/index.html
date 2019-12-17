@@ -1,0 +1,893 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaScript,JS,技巧,">
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="熊 D 博客" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="闲来无事，整理一下 JavaScript 中那些神乎其神的技巧，假装大牛的样子">
+<meta name="keywords" content="JavaScript,JS,技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="细数JavaScript中那些神乎其神的技巧">
+<meta property="og:url" content="http://blog.BearD.ink/JavaScript/细数JavaScript中那些神乎其神的技巧/index.html">
+<meta property="og:site_name" content="熊 D 博客">
+<meta property="og:description" content="闲来无事，整理一下 JavaScript 中那些神乎其神的技巧，假装大牛的样子">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-17T02:43:26.497Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="细数JavaScript中那些神乎其神的技巧">
+<meta name="twitter:description" content="闲来无事，整理一下 JavaScript 中那些神乎其神的技巧，假装大牛的样子">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://blog.BearD.ink/JavaScript/细数JavaScript中那些神乎其神的技巧/">
+
+  <title> 细数JavaScript中那些神乎其神的技巧 | 熊 D 博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s6.cnzz.com/stat.php?id=1261020784&web_id=1261020784" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader" style="background-image: url('/images/home_bg.jpg');">
+      <div class="header-inner"><a class="site-home" href="/">熊 D 博客</a>
+
+<div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <div href="/" class="brand">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">熊 D 博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </div>
+  </div>
+  <p class="site-subtitle">SIMPLE BUT NOT SIMPLE.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <input type="text" id="local-search-input">
+ <span class="search-icon fa fa-search"></span>
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+      <div class="header-post"> 
+  <div class="post-header">
+      <div class="tags">
+      
+        <a href="/tags/JavaScript/" rel="tag" title="JavaScript">JavaScript</a>
+      
+        <a href="/tags/JS/" rel="tag" title="JS">JS</a>
+      
+        <a href="/tags/技巧/" rel="tag" title="技巧">技巧</a>
+      
+      </div>
+      <h1>细数JavaScript中那些神乎其神的技巧</h1>
+      <h2 class="subtitle"></h2>
+      <div class="post-time">
+        <span class="post-meta-item-text">Posted on </span>
+        <time itemprop="dateCreated" datetime="2016-07-15T15:10:02+08:00" content="July 15th 2016" title="2016-07-15 15:10:02">
+          July 15th 2016
+        </time>
+      </div>
+  </div>
+ </div>
+    </header>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                细数JavaScript中那些神乎其神的技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-07-15T15:10:02+08:00" content="July 15th 2016">
+              July 15th 2016
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          <!-- 
+            
+           -->
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>闲来无事，整理一下JavaScript中那些神乎其神的技巧，假装大牛的样子</strong></p>
+<h2 id="1-字符串转换为数字"><a href="#1-字符串转换为数字" class="headerlink" title="1. 字符串转换为数字"></a>1. 字符串转换为数字</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"123"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(+a);         <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> +a);  <span class="comment">// number</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 同样可用于日期转换为数值：</span></span><br><span class="line"><span class="keyword">var</span> b = +<span class="keyword">new</span> <span class="built_in">Date</span>();     <span class="comment">// 1468545682168</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-数值向下取整"><a href="#2-数值向下取整" class="headerlink" title="2. 数值向下取整"></a>2. 数值向下取整</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = ~~<span class="number">3.14</span>;   <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">3.14</span>&gt;&gt;<span class="number">0</span>;  <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">c</span> = <span class="number">3.14</span>|<span class="number">0</span>;   <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-字符串转换为数值并取整"><a href="#3-字符串转换为数值并取整" class="headerlink" title="3. 字符串转换为数值并取整"></a>3. 字符串转换为数值并取整<a id="more"></a></h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"3.14"</span>|<span class="number">0</span>;  <span class="comment">// 3</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"3.14"</span>^<span class="number">0</span>;  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>谢谢 @开始学习前端[kaishixuexiqianduan] 指正，<strong>该取整直接去除小数点后数字，仅对正数有效</strong></p>
+</blockquote>
+<h2 id="4-函数设置默认值"><a href="#4-函数设置默认值" class="headerlink" title="4. 函数设置默认值"></a>4. 函数设置默认值</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">(arg)</span></span>&#123;</span><br><span class="line">    var <span class="built_in">arg</span> = <span class="built_in">arg</span> || <span class="string">"default"</span>; </span><br><span class="line">    // <span class="built_in">arg</span> 为 undefined, null, <span class="string">""</span>, <span class="number">0</span>, <span class="literal">false</span>, NaN 时最后都得到<span class="string">"default"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5-变量值交换"><a href="#5-变量值交换" class="headerlink" title="5. 变量值交换"></a>5. 变量值交换</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a = 1,</span><br><span class="line"><span class="code">    b = 2;</span></span><br><span class="line">a = [<span class="string">b, b = a</span>][<span class="symbol">0</span>];</span><br><span class="line">console.log(a);  // 2</span><br><span class="line">console.log(b);  // 1</span><br></pre></td></tr></table></figure>
+<h2 id="6-使用for-in遍历对象取到属性名与属性"><a href="#6-使用for-in遍历对象取到属性名与属性" class="headerlink" title="6. 使用for in遍历对象取到属性名与属性"></a>6. 使用<code>for in</code>遍历对象取到属性名与属性</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    b: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"obj."</span> + i + <span class="string">" = "</span> + obj[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// output: obj.a = 1</span></span><br><span class="line"><span class="comment">//         obj.b = 2</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-截断数组"><a href="#7-截断数组" class="headerlink" title="7. 截断数组"></a>7. 截断数组</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">arr</span> <span class="string">=</span> <span class="string">[1,</span> <span class="number">2</span><span class="string">,</span> <span class="number">3</span><span class="string">,</span> <span class="number">4</span><span class="string">,</span> <span class="number">5</span><span class="string">,</span> <span class="number">6</span><span class="string">];</span></span><br><span class="line"><span class="string">arr.length</span> <span class="string">=</span> <span class="number">3</span><span class="string">;</span></span><br><span class="line"><span class="string">console.log(arr);</span>  <span class="string">//</span> <span class="string">[1,</span> <span class="number">2</span><span class="string">,</span> <span class="number">3</span><span class="string">]</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-提高遍历较大Enumerable数据的性能"><a href="#8-提高遍历较大Enumerable数据的性能" class="headerlink" title="8. 提高遍历较大Enumerable数据的性能"></a>8. 提高遍历较大Enumerable数据的性能</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, ...];</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">len</span> = arr.length;  <span class="comment">// 缓存arr.length</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">len</span>; i++) &#123;</span><br><span class="line">    console.log(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可将缓存写在for的声明中</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, <span class="built_in">len</span> = a.length; i &lt; <span class="built_in">len</span>; i++) &#123;</span><br><span class="line">    console.log(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者（！注意：若数组中键值存在undefined、null、0、false等数据时会中断遍历）</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, a; a = arr[i++];) &#123;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="9-使用-amp-amp-替代单一条件判断"><a href="#9-使用-amp-amp-替代单一条件判断" class="headerlink" title="9. 使用 &amp;&amp; 替代单一条件判断"></a>9. 使用 <code>&amp;&amp;</code> 替代单一条件判断</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 你可能这样写过</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="built_in">token</span>) &#123;</span><br><span class="line">    <span class="built_in">login</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 其实这样也可以</span></span><br><span class="line">!<span class="built_in">token</span> &amp;&amp; <span class="built_in">login</span>();</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="built_in">token</span> || <span class="built_in">login</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="10-检测-对象-数组-中是否有指定-属性-元素"><a href="#10-检测-对象-数组-中是否有指定-属性-元素" class="headerlink" title="10. 检测 对象/数组 中是否有指定 属性/元素"></a>10. 检测 对象/数组 中是否有指定 属性/元素</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CURD = &#123;</span><br><span class="line">    add: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    <span class="keyword">delete</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    edit: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"add"</span> <span class="keyword">in</span> CURD);   <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"find"</span> <span class="keyword">in</span> CURD);  <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 误 */</span></span><br><span class="line"><span class="comment">// var arr = [1, 2, 3];</span></span><br><span class="line"><span class="comment">// console.log(1 in arr);  // true</span></span><br><span class="line"><span class="comment">// console.log(6 in arr);  // false</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>谢谢 @zaaack[zaaack] 指正，<strong>数组的存在检测实质上是检测的是数组下标</strong></p>
+</blockquote>
+<h2 id="11-通过闭包调用setTimeout"><a href="#11-通过闭包调用setTimeout" class="headerlink" title="11. 通过闭包调用setTimeout"></a>11. 通过闭包调用setTimeout</h2><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">for(<span class="name">var</span> i = <span class="number">0</span><span class="comment">; i &lt; 10; i++) &#123;</span></span><br><span class="line">    setTimeout(<span class="name">function</span>()&#123;</span><br><span class="line">        console.log(<span class="name">i</span>)<span class="comment">;  // 10 10 10 ...</span></span><br><span class="line">    &#125;,<span class="number">500</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for(<span class="name">var</span> i = <span class="number">0</span><span class="comment">; i &lt; 10; i++) &#123;</span></span><br><span class="line">    (<span class="name">function</span>(<span class="name">i</span>)&#123;</span><br><span class="line">        setTimeout(<span class="name">function</span>()&#123;</span><br><span class="line">            console.log(<span class="name">i</span>)<span class="comment">;  // 0 1 2 3 ...</span></span><br><span class="line">        &#125;,<span class="number">500</span>)</span><br><span class="line">    &#125;)(<span class="name">i</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="12-To-be-continue…"><a href="#12-To-be-continue…" class="headerlink" title="12. To be continue…"></a>12. To be continue…</h2>
+        所有文章非特别说明皆为原创。技术更迭迅猛，部分内容可能会作修改，为保证信息与源同步，转载时请务必注明文章出处！谢谢合作 :-)
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/JS/" rel="tag">#JS</a>
+          
+            <a href="/tags/技巧/" rel="tag">#技巧</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Other/好吧我很懒什么都没有弄-зゝ∠/" rel="next" title="好吧我很懒什么都没有弄_(:зゝ∠)_">
+                <i class="fa fa-chevron-left"></i> 好吧我很懒什么都没有弄_(:зゝ∠)_
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/JavaScript/JS简单小巧的时间日期格式转换函数/" rel="prev" title="JS简单小巧的时间日期格式转换函数">
+                JS简单小巧的时间日期格式转换函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="熊D01001（BearD01001）">
+          <p class="site-author-name" itemprop="name">熊D01001（BearD01001）</p>
+          <p class="site-description motion-element" itemprop="description">写点东西，看着自己慢慢成长也蛮有趣的。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/rss2.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/BearD01001" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.instagram.com/BearD01001" target="_blank" title="Instagram">
+                  
+                    <i class="fa fa-fw fa-instagram"></i>
+                  
+                  Instagram
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lookime" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/HiDino9" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+            </a>
+          </div>
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-字符串转换为数字"><span class="nav-number">1.</span> <span class="nav-text">1. 字符串转换为数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数值向下取整"><span class="nav-number">2.</span> <span class="nav-text">2. 数值向下取整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-字符串转换为数值并取整"><span class="nav-number">3.</span> <span class="nav-text">3. 字符串转换为数值并取整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-函数设置默认值"><span class="nav-number">4.</span> <span class="nav-text">4. 函数设置默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-变量值交换"><span class="nav-number">5.</span> <span class="nav-text">5. 变量值交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-使用for-in遍历对象取到属性名与属性"><span class="nav-number">6.</span> <span class="nav-text">6. 使用for in遍历对象取到属性名与属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-截断数组"><span class="nav-number">7.</span> <span class="nav-text">7. 截断数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-提高遍历较大Enumerable数据的性能"><span class="nav-number">8.</span> <span class="nav-text">8. 提高遍历较大Enumerable数据的性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-使用-amp-amp-替代单一条件判断"><span class="nav-number">9.</span> <span class="nav-text">9. 使用 &amp;&amp; 替代单一条件判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-检测-对象-数组-中是否有指定-属性-元素"><span class="nav-number">10.</span> <span class="nav-text">10. 检测 对象/数组 中是否有指定 属性/元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-通过闭包调用setTimeout"><span class="nav-number">11.</span> <span class="nav-text">11. 通过闭包调用setTimeout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-To-be-continue…"><span class="nav-number">12.</span> <span class="nav-text">12. To be continue…</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">熊D01001（BearD01001）</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/BearD01001/hexo-theme-nextd">
+    NexTD
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <style>
+        .gitment-editor-avatar {
+            border-bottom: none !important;
+        }
+        .gitment-container a:hover {
+            text-decoration: none !important;
+        }
+        .gitment-markdown a,
+        .gitment-footer-project-link {
+            color: #555 !important;
+        }
+        .gitment-footer-project-link:hover,
+        .gitment-editor-logout-link:hover,
+        .gitment-editor-footer-tip:hover,
+        .gitment-header-issue-link:hover,
+        .gitment-comment-name:hover,
+        .gitment-markdown a:hover {
+            color: #222 !important;
+        }
+    </style>
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var id = '1468566602000';
+            var owner = 'BearD01001';
+            var repo = 'beard01001.github.io';
+            var clientId = '7e6796bf4bd74a25333f';
+            var clientSecret = 'd190223868b2175fbce4094e6485195cef7d3e8a';
+
+            var gitment = new Gitment({
+                id: id,
+                owner: owner,
+                repo: repo,
+                oauth: {
+                    client_id: clientId,
+                    client_secret: clientSecret,
+                },
+            });
+            gitment.render('comments');
+        })();
+    </script>
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').fadeToggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ decodeURIComponent(data_url) +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').fadeOut(function() {
+          $(".popoverlay").remove();
+          $('body').css('overflow', '');
+      });
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
