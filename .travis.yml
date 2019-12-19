@@ -1,20 +1,22 @@
 language: node_js
 node_js:
-  - "lts/*"
+- lts/*
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 branches:
   only:
-    - deploy
+  - deploy
 before_install:
-  - wget https://github.com/BearD01001/hexo-theme-nextd/archive/master.zip && unzip -o master.zip
-  - mkdir -p themes/nextd && cd hexo-theme-nextd-master && cp -rf * ../themes/nextd && cd ..
+- wget https://github.com/BearD01001/hexo-theme-nextd/archive/master.zip && unzip
+  -o master.zip
+- mkdir -p themes/nextd && cd hexo-theme-nextd-master && cp -rf * ../themes/nextd
+  && cd ..
 script: node_modules/.bin/hexo g
 deploy:
   skip_cleanup: true
   provider: firebase
   token:
-    secure: $FB_TOKEN
+    secure: Ux1TJkyFscwyiuqXJBcjiHgLfAS6CSN6xwg6A9SuPajwq2lV+bmhh/KDQDOrrU54MV6sMK2o/uQNtoHj0OG1rNoG6jW8IGgCMfGPNfiQege0nhIZBUWkSfyP2p5SiYEBXKiOQcAF9zQ+4tZkG2rQPiu5d9R2blAUfpfG6GZUWG+h1xiw2HavrQ4pIQPbsKHUumZ1MSStumeOaKpxnfEcpSFBiaYcC3qe62lQjYVlTq4ZUePMe72JDjNghny/TGU3D3nep4OGIYsSH3Z/Gq9f/bdN8/Ko58+qx4vmJhXsPY79/sbXF6qFjrcPXbMYw9ldpjBUU3aec3on8yEFC/8Okgf/bzH3lzsN3fUT7GAYXpifWDuFrkY8o46IW5y7PuaTaXMEEbju5DHZk8MX61DeSxLfHc6EiflpjkjlHo29Zo+SGqiVlYGWhsAv2ClzWkfMdkVkWwRDOVVHnOO4+lVQG2LnpK165EusQELqKOc/pYz90YJ8SFZ1aoPGacV+0PbYdNWVC7BUVHz6EgxU4xQouJqpMnmhhq8Phx/uS4ORKCWh89r6sKIQakz0Z3RbJ/CJfemh2BMtTMCIBZ0NJ6lGV1IyjvANmpOTJA4wg45toAZKqObR3pz57vkFNfaowzIsq1SlBFAN0ElLNtqq9DHLwVBIjUFaxC+w5pmxFUMvLN8=
   on:
     branch: deploy
